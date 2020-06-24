@@ -1,36 +1,33 @@
+
+! ########
+! #COLORS#
+! ########
+
 ! special
 *.foreground:   #cfcfc2
 *.background:   [80]#131926
 *.cursorColor:  #cfcfc2
-
 ! black
 *.color0:       #2a2e32
 *.color8:       #555555
-
 ! red
-*.color1:       #c0392b
+*.color1:       #b91e2e
 *.color9:       #f44f4f
-
 ! green
 *.color2:       #44aa44
 *.color10:      #4ce64c
-
-! yellow
-*.color3:       #fdbc4b
-*.color11:      #fdbc4b
-
+!yellow
+*color3:        #fea63c
+*color11:       #ffe863
 ! blue
 *.color4:       #2980b9
 *.color12:      #0099ff
-
 ! magenta
 *.color5:       #8e44ad
 *.color13:      #af81ff
-
 ! cyan
 *.color6:       #27aeae
 *.color14:      #31dddd
-
 ! white
 *.color7:       #acada1
 *.color15:      #cfd0c2
@@ -38,10 +35,10 @@
 URxvt*transparent:false
 URxvt*depth: 32
 ! //////////////////////
-
+! Отключаем scrollBar
 URxvt.scrollBar: false
 
-
+! Устанавливаем шрифты
 URxvt.font: xft:Hack:size=10
 URxvt.letterSpace: -1
 
@@ -50,7 +47,58 @@ URxvt.iso14755:        false
 URxvt.iso14755_52:     false
 
 URxvt.clipboard.autocopy: true
-URxvt.keysym.Control-V: eval:paste_clipboard
-URxvt.keysym.Control-C: eval:selection_to_clipboard
+!URxvt.keysym.Control-V: eval:paste_clipboard
+!URxvt.keysym.Control-C: eval:selection_to_clipboard
 URxvt.keysym.Control-v: eval:paste_clipboard
 URxvt.keysym.Control-c: eval:selection_to_clipboard
+
+! ////////////////////////////////////////////////
+! ##############
+! #PERL Скрипты#
+! ##############
+
+! Ссылки в терминале
+! ......................................
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+
+URxvt.matcher.rend.0: Uline Bold fg5
+! ......................................
+
+! Вкладки
+! .....................................
+! Для управления вкладками, используйте:
+! Клавиши 	Описание
+! Shift+Down 	Новая вкладка
+! Shift+Left 	Перейти к левой вкладке
+! Shift+Right 	Перейти к правой вкладке
+! Ctrl+Left 	Переместить вкладку влево
+! Ctrl+Right 	Переместить вкладку вправо
+! Ctrl+d 	Закрыть вкладку 
+
+URxvt.perl-ext-common: ...,tabbed,...
+
+! Цвета вкладок
+URxvt.tabbed.tabbar-fg: 2
+URxvt.tabbed.tabbar-bg: 0
+URxvt.tabbed.tab-fg: 3
+URxvt.tabbed.tab-bg: 0
+
+! .....................................
+
+! Полноэкранный режим
+URxvt.perl-ext-common: ..., fullscreen, ...
+URxvt.keysym.F11: perl:fullscreen:switch
+
+! Колесо прокрутки
+URxvt.perl-ext-common:  ...,vtwheel,...
+
+
+
+
+
+! URxvt.perl-ext:
+! URxvt.perl-ext-common:
+
+
