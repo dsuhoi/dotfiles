@@ -47,8 +47,8 @@ URxvt.iso14755:        false
 URxvt.iso14755_52:     false
 
 URxvt.clipboard.autocopy: true
-!URxvt.keysym.Control-V: eval:paste_clipboard
-!URxvt.keysym.Control-C: eval:selection_to_clipboard
+URxvt.keysym.Control-V: eval:paste_clipboard
+URxvt.keysym.Control-C: eval:selection_to_clipboard
 URxvt.keysym.Control-v: eval:paste_clipboard
 URxvt.keysym.Control-c: eval:selection_to_clipboard
 
@@ -59,7 +59,7 @@ URxvt.keysym.Control-c: eval:selection_to_clipboard
 
 ! Ссылки в терминале
 ! ......................................
-URxvt.perl-ext-common: default,matcher
+URxvt.perl-ext-common: default,matcher,fullscreen,tabbed,vtwheel
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 
@@ -77,22 +77,22 @@ URxvt.matcher.rend.0: Uline Bold fg5
 ! Ctrl+Right 	Переместить вкладку вправо
 ! Ctrl+d 	Закрыть вкладку 
 
-URxvt.perl-ext-common: ...,tabbed,...
+!URxvt.perl-ext-common: ...,tabbed,...
 
 ! Цвета вкладок
-URxvt.tabbed.tabbar-fg: 2
-URxvt.tabbed.tabbar-bg: 0
-URxvt.tabbed.tab-fg: 3
+URxvt.tabbed.tabbar-fg: 8
+URxvt.tabbed.tabbar-bg: background
+URxvt.tabbed.tab-fg: 4
 URxvt.tabbed.tab-bg: 0
 
 ! .....................................
 
 ! Полноэкранный режим
-URxvt.perl-ext-common: ..., fullscreen, ...
+!URxvt.perl-ext-common: ..., fullscreen, ...
 URxvt.keysym.F11: perl:fullscreen:switch
 
 ! Колесо прокрутки
-URxvt.perl-ext-common:  ...,vtwheel,...
+!URxvt.perl-ext-common:  ...,vtwheel,...
 
 
 

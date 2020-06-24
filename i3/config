@@ -40,11 +40,11 @@ exec --no-startup-id setxkbmap "us,ru" ",winkeys" "grp:alt_shift_toggle,grp_led:
 exec --no-startup-id feh --bg-scale /usr/share/backgrounds/desktop-image.jpg;  sleep 1; compton -b
 
 #Старт меню rofi
-bindsym $mod+space exec --no-startup-id rofi -theme solarized -font "hack 10" -show run
+bindsym $mod+space exec --no-startup-id rofi -theme DarkBlue -font "hack 10" -show run
 
 
 #Пользовательские программы
-exec --no-startup-id xfce4-terminal
+exec --no-startup-id urxvt
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -93,12 +93,12 @@ bindsym $mod+F9 exec --no-startup-id vlc; workspace 9
 
 # Открытие программ в плавающе окне
 for_window [class="Gnome-calculator"] floating enable
-for_window [class="Xfce4-terminal"] floating enable
+for_window [class="Urxvt"] floating enable
 
 ##Горячие клавиши##
 
 bindsym $mod+q kill
-bindsym $mod+Return exec --no-startup-id xfce4-terminal
+bindsym $mod+Return exec --no-startup-id urxvt
 bindsym $mod+Escape exec shutdown -h now
 bindsym $mod+Shift+Escape exec reboot
 
