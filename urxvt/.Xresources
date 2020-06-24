@@ -1,0 +1,56 @@
+! special
+*.foreground:   #cfcfc2
+*.background:   [80]#131926
+*.cursorColor:  #cfcfc2
+
+! black
+*.color0:       #2a2e32
+*.color8:       #555555
+
+! red
+*.color1:       #c0392b
+*.color9:       #f44f4f
+
+! green
+*.color2:       #44aa44
+*.color10:      #4ce64c
+
+! yellow
+*.color3:       #fdbc4b
+*.color11:      #fdbc4b
+
+! blue
+*.color4:       #2980b9
+*.color12:      #0099ff
+
+! magenta
+*.color5:       #8e44ad
+*.color13:      #af81ff
+
+! cyan
+*.color6:       #27aeae
+*.color14:      #31dddd
+
+! white
+*.color7:       #acada1
+*.color15:      #cfd0c2
+! ///////////////////////
+URxvt*transparent:false
+URxvt*depth: 32
+! //////////////////////
+
+URxvt.scrollBar: false
+
+
+URxvt.font: xft:Hack:size=10
+URxvt.letterSpace: -1
+
+! Копирование и Вставка
+URxvt.iso14755:        false
+URxvt.iso14755_52:     false
+
+URxvt.clipboard.autocopy: true
+URxvt.keysym.Control-V: eval:paste_clipboard
+URxvt.keysym.Control-C: eval:selection_to_clipboard
+URxvt.keysym.Control-v: eval:paste_clipboard
+URxvt.keysym.Control-c: eval:selection_to_clipboard
