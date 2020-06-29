@@ -33,7 +33,7 @@ font-3 = "Material Icons:pixelsize=11;2"
 font-4 = FontAwesome 5 Free:size=8:style=Solid;1
 font-5 = Font Awesome 5 Brands:size=12:style=Solid;1
 font-6 = DejaVu Sans:size=12:style=Solid;3
-;font-7 = Weather Icons:size=11;1
+;font-7 = Weather Icons:size=12;1
 
 ;modules-center =
 modules-right =   openweathermap memory filesystem updates network keyboard volume battery date powermenu
