@@ -55,13 +55,13 @@ exec --no-startup-id urxvt
 default_border pixel
 
 # Когда открыто одно окно, оно открывется на весь экран без отступов
-smart_gaps on
+#smart_gaps on
 
 # Отступы между открытыми окнами
-gaps inner 0
+#gaps inner 0
 
 # Включает умные рамки, когда открыто одно окно рамки выключаются
-smart_borders on
+#smart_borders on
 
 # Увеличение толщены рамки, чтобы было лучше видно активное окно
 for_window [tiling] border pixel 3
@@ -73,8 +73,8 @@ for_window [tiling] border pixel 3
 
 ##Быстрый вызов программ##
 
-bindsym $mod+F1 exec --no-startup-id firefox; workspace 2
-bindsym $mod+F2 exec --no-startup-id pacmd
+#bindsym $mod+F1 exec --no-startup-id
+bindsym $mod+F2 exec --no-startup-id firefox; workspace 2
 bindsym $mod+F3 exec --no-startup-id gedit; workspace 5
 bindsym $mod+F4 exec --no-startup-id geany; workspace 4
 bindsym $mod+F5 exec --no-startup-id gnome-calculator

@@ -3,7 +3,7 @@
 while [ -n "$1" ]
 do
 case "$1" in
--b) sudo pacman -S i3wm i3-gaps i3status rofi vim rxvt-unicode pcmanfm feh lxappearance compton xorg-server xorg-xinit xorg-apps mesa-libgl lib32-mesa-libgl xterm xf86-video-intel ;;
+-b) sudo pacman -S i3 i3-gaps i3status rofi vim rxvt-unicode pcmanfm feh lxappearance compton xorg-server xorg-xinit xorg-apps mesa-libgl xterm xf86-video-intel ;;
 -e) sudo pacman -S net-tools firefox libreoffice-fresh libreoffice-fresh-ru ttf-freefont ttf-linux-libertine ttf-hack ttf-font-awesome gimp unzip unrar p7zip vlc pulseaudio pulseaudio-alsa links ;;
 -c) sudo pacman -S git gcc python jdk-openjdk geany ranger mc ;;
 -y) 
