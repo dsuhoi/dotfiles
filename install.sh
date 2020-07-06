@@ -3,8 +3,8 @@
 while [ -n "$1" ]
 do
 case "$1" in
--b) sudo pacman -S --needed i3 i3-gaps i3status rofi vim rxvt-unicode pcmanfm feh lxappearance compton xorg-server xorg-xinit xorg-apps mesa-libgl xterm xf86-video-intel jq htop ;;
--e) sudo pacman -S --needed net-tools firefox libreoffice-fresh libreoffice-fresh-ru ttf-freefont ttf-linux-libertine ttf-hack ttf-font-awesome gimp unzip unrar p7zip vlc pulseaudio pulseaudio-alsa links gnome-calculator neofetch;;
+-b) sudo pacman -S --needed vim rxvt-unicode pcmanfm lxappearance compton xorg-server xorg-xinit xorg-apps mesa-libgl xterm xf86-video-intel htop ;;
+-e) sudo pacman -S --needed net-tools firefox libreoffice-fresh libreoffice-fresh-ru gimp unzip unrar p7zip vlc pulseaudio pulseaudio-alsa links gnome-calculator neofetch ;;
 -c) sudo pacman -S --needed git gcc python jdk-openjdk geany ranger mc ;;
 -y) 
    sudo pacman -S --needed base-devel git wget yajl
@@ -24,13 +24,17 @@ case "$1" in
    git clone https://AUR.archlinux.org/visual-studio-code-bin.git
    cd visual-studio-code-bin/
    makepkg -si
-   cd ../ && sudo rm -rfv visual-studio-code-bin/ ;;  
+   cd ../ && sudo rm -rfv visual-studio-code-bin/ ;;
+-gui)
+   sudo pacman -S --needed i3 i3-gaps i3status rofi feh scrot pacman-contrib jq ttf-freefont ttf-linux-libertine ttf-hack ttf-font-awesome
+   yaourt -S polybar ;;
 -h)
    echo "-b   --Base installation"
    echo "-e   --Extra installation"
    echo "-c   --Dev. installation" 
    echo "-y   --AUR installation"
-   echo "-vsc --VS Code instalation" ;;
+   echo "-vsc --VS Code instalation"
+   echo "-gui --GUI installation" ;;
 *) echo "--parametr ???" ;;
 esac
 shift
