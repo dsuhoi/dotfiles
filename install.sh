@@ -26,8 +26,8 @@ case "$1" in
    makepkg -si
    cd ../ && sudo rm -rfv visual-studio-code-bin/ ;;
 -gui)
-   sudo pacman -S --needed i3 i3-gaps i3status rofi feh scrot pacman-contrib jq ttf-freefont ttf-linux-libertine ttf-hack ttf-font-awesome
-   yaourt -S polybar ;;
+   sudo pacman -S --needed i3 i3-gaps i3status rofi feh scrot pacman-contrib arc-gtk-theme jq ttf-freefont ttf-linux-libertine ttf-hack ttf-font-awesome
+   yaourt -S polybar numix-circle-arc-icons-git;;
 -h)
    echo "-b   --Base installation"
    echo "-e   --Extra installation"
