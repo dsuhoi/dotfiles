@@ -82,8 +82,8 @@ fi
     sun_rise=$(echo "$weather" | jq ".sys.sunrise")
     sun_set=$(echo "$weather" | jq ".sys.sunset")
     now=$(date +%s)
-    
-    
+       
+if [ -n "$weather" ]; then
     if [ "$sun_rise" -gt "$now" ]; then
         daytime=$(get_duration "$((sun_rise-now))")
     elif [ "$sun_set" -gt "$now" ]; then
@@ -92,10 +92,11 @@ fi
         daytime=$(get_duration "$((sun_rise-now))")
     fi
     
-if [ -n "$weather" ]; then
     weather_desc=$(echo "$weather" | jq -r ".weather[0].description")
     weather_temp=$(echo "$weather" | jq ".main.temp" | cut -d "." -f 1)
     weather_icon=$(echo "$weather" | jq -r ".weather[0].icon")
 
     echo "$weather_desc", "$weather_temp$SYMBOL", "$daytime"
+else
+    echo --- --- ---
 fi
