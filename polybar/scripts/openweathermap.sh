@@ -54,7 +54,7 @@ get_duration() {
 
 
 KEY="fdbdc0736ea465bef73ac128a46fb6df"
-CITY="571476"
+CITY="524901"
 UNITS="metric"
 SYMBOL="°C"
 
