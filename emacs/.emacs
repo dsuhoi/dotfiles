@@ -1,4 +1,3 @@
-
 ;; System-type definition
 (defun system-is-linux()
 	(string-equal system-type "gnu/linux"))
@@ -90,12 +89,21 @@
 
 
 ;; PLAGINS
+;; EVIL MODE
+(require 'evil)
+(evil-mode 1)
+
 ;; HELM
 (require 'helm)
-
 (setq-default helm-M-x-fuzzy-match t)
-(global-set-key "\C-x\C-m" 'helm-M-x)
-(global-set-key "\C-c\C-m" 'helm-M-x)
+;;;; define shortcuts for powerful commands
+;;;; these can be invoked vim-style
+;;;; Esc-:<single_key_from_below>
+(define-key evil-ex-map "b " 'helm-mini)
+(define-key evil-ex-map "e" 'helm-find-files)
+(define-key evil-ex-map "g" 'helm-projectile-grep)
+(define-key evil-ex-map "f" 'helm-projectile-find-file)
+
 
 ;; Linum plugin
 (require 'linum) ;; вызвать Linum
@@ -105,46 +113,80 @@
 (setq linum-format " %d") ;; задаем формат нумерации строк
 
 ;; EMACS CODE BROWSER
-;; (global-set-key [f7] 'ecb-activate)
-;; (custom-set-variables
-;;  ;; custom-set-variables was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  '(ecb-compile-window-height 10)
-;;  '(ecb-compile-window-temporally-enlarge 'after-selection)
-;;  '(ecb-compile-window-width 'edit-window)
-;;  '(ecb-layout-name "left1")
-;;  '(ecb-options-version "2.50")
-;;  '(ecb-tip-of-the-day nil)
-;;  '(package-selected-packages
-;;    '(cmake-mode tron-legacy-theme all-the-icons yasnippet-snippets yasnippet neotree helm ecb auto-complete-c-headers)))
-;; (custom-set-faces
-;;  ;; custom-set-faces was added by Custom.
-;;  ;; If you edit it by hand, you could mess it up, so be careful.
-;;  ;; Your init file should contain only one such instance.
-;;  ;; If there is more than one, they won't work right.
-;;  )
+(global-set-key [f7] 'ecb-activate)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ecb-compile-window-height 10)
+ '(ecb-compile-window-temporally-enlarge 'after-selection)
+ '(ecb-compile-window-width 'edit-window)
+ '(ecb-layout-name "left1")
+ '(ecb-options-version "2.50")
+ '(ecb-tip-of-the-day nil)
+ '(package-selected-packages
+   '(evil cmake-mode tron-legacy-theme all-the-icons yasnippet-snippets yasnippet neotree helm ecb auto-complete-c-headers)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
 
 (require 'auto-complete)
 (require 'auto-complete-config)
 (ac-config-default)
+
+(defun my-ac-c-init ()
+  (require 'auto-complete-c-headers)
+  (add-to-list 'ac-sources 'ac-source-c-headers))
+
+(add-hook 'c-mode-common-hook 'my-ac-c-init)
+
 (require 'yasnippet)
 (yas/initialize)
 (yas-global-mode 1)
 
-
-(require 'cedet)
 (require 'semantic/ia)
 (require 'semantic/bovine/gcc)
+
+;; select which submodes we want to activate
+(add-to-list 'semantic-default-submodes 'global-semantic-mru-bookmark-mode)
+(add-to-list 'semantic-default-submodes 'global-semantic-idle-scheduler-mode)
+(add-to-list 'semantic-default-submodes 'global-semantic-stickyfunc-mode)
+(add-to-list 'semantic-default-submodes 'global-cedet-m3-minor-mode)
+(add-to-list 'semantic-default-submodes 'global-semantic-highlight-func-mode)
+(add-to-list 'semantic-default-submodes 'global-semanticdb-minor-mode)
+
+;; Activate semantic
 (semantic-mode 1)
-(global-ede-mode 1)
 
-(defun my:add-semantic-to-autocomplete()
-(add-to-list 'ac-sources 'ac-source-semantic)
-)
+(setq-mode-local c-mode-common-hook semanticdb-find-default-throttle '(project unloaded system recursive))
 
-(add-hook 'c-mode-common-hook 'my:add-semantic-to-autocomplete)
+;; EDE
+;(global-ede-mode 1)
+;(ede-enable-generic-projects)
+
+
+(setq-mode-local c-mode semanticdb-find-default-throttle
+                 '(project unloaded system recursive))
+(setq-mode-local c++-mode semanticdb-find-default-throttle
+                 '(project unloaded system))
+
+
+(defun my-semantic-hook ()
+  (imenu-add-to-menubar "TAGS"))
+(add-hook 'semantic-init-hooks 'my-semantic-hook)
+
+(setq-mode-local c-mode-common-hook semanticdb-find-default-throttle
+                 '(project unloaded recursive))
+
+(defun my-add-semantic-to-autocomplete()
+  (add-to-list 'ac-sources 'ac-source-gtags)
+  (add-to-list 'ac-sources 'ac-source-semantic))
+
+(add-hook 'c-mode-common-hook 'my-add-semantic-to-autocomplete)
 
 (require 'neotree)
 (global-set-key [f8] 'neotree-toggle)
