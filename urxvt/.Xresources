@@ -2,8 +2,8 @@
 ! ########
 ! #COLORS#
 ! ########
+URxvt*background:   rgba:0000/0000/0000/cccc
 *.foreground:   #cfcfc2
-*.background:   #101010
 *.cursorColor:  #cfcfc2
 ! black
 *.color0:       #222222
@@ -30,7 +30,7 @@
 *.color7:       #acada1
 *.color15:      #cfd0c2
 ! ///////////////////////
-URxvt*transparent:false
+URxvt*transparent: false
 URxvt*depth: 32
 ! //////////////////////
 ! Отключаем scrollBar
@@ -45,10 +45,10 @@ URxvt.iso14755:        false
 URxvt.iso14755_52:     false
 
 URxvt.clipboard.autocopy: true
-URxvt.keysym.Control-V: eval:paste_clipboard
-URxvt.keysym.Control-C: eval:selection_to_clipboard
-URxvt.keysym.Control-v: eval:paste_clipboard
-URxvt.keysym.Control-c: eval:selection_to_clipboard
+URxvt.keysym.Control-P: eval:paste_clipboard
+URxvt.keysym.Control-Y: eval:selection_to_clipboard
+URxvt.keysym.Control-p: eval:paste_clipboard
+URxvt.keysym.Control-y: eval:selection_to_clipboard
 
 ! ////////////////////////////////////////////////
 ! ##############
