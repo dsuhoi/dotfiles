@@ -37,7 +37,7 @@ URxvt*depth: 32
 URxvt.scrollBar: false
 
 ! Устанавливаем шрифты
-URxvt.font: xft:Hack:size=10
+URxvt*font: xft:Terminus:regular:size=14
 URxvt.letterSpace: -1
 
 ! Копирование и Вставка
@@ -57,7 +57,7 @@ URxvt.keysym.Control-y: eval:selection_to_clipboard
 
 ! Ссылки в терминале
 ! ......................................
-URxvt.perl-ext-common: default,matcher,fullscreen,vtwheel
+URxvt.perl-ext-common: default,matcher,fullscreen,vtwheel,xresources-256
 URxvt.url-launcher: /usr/bin/xdg-open
 URxvt.matcher.button: 1
 
