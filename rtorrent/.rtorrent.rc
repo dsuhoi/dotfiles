@@ -1,0 +1,40 @@
+
+# Максимальное и минимальное количество пиров при соединении через torrent.
+max_peers = 400
+#min_peers = 40
+
+# Тоже что и выше, только для seed выкаченных torrents (-1 = same as downloading)
+#min_peers_seed = 10
+#max_peers_seed = 50
+
+#max_uploads = 15
+
+download_rate = 2500
+upload_rate = 2000
+
+directory = ~/torrent/downloads/
+
+session = ~/torrent/session
+
+schedule = throttle_1,18:00:00,24:00:00,download_rate=2500
+schedule = throttle_2,08:00:00,24:00:00,download_rate=2000
+
+#schedule = watch_directory,5,5,load_start=~/torrent/*.torrent
+
+port_range = 6900-6900
+
+port_random = no
+
+check_hash = yes
+# max_open_sockets ⇒ network.max_open_sockets 
+# max_open_files ⇒ network.max_open_files 
+# umask ⇒ system.umask.set 
+# d.save_session ⇒ d.save_full_session
+system.umask.set = 022
+
+session.name.set = "$cat=$system.hostname=,:,$system.pid="
+
+#session_on_completion = yes
+
+#working_directory = ~/torrent/
+max_uploads = 100
