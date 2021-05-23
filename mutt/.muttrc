@@ -1,0 +1,146 @@
+source "gpg -dq <pass.gpg> |"
+#pass.gpg --> set my_pass = <password>
+set imap_user = <user@gmail.com>
+set imap_pass = $my_pass
+
+############
+### IMAP ###
+############
+#set imap_user = `/usr/bin/pass 1th_freehost_mailbox`
+#set imap_pass = `/usr/bin/pass 1th_freehost_password`
+set imap_check_subscribed
+# not open new IMAP connections to check for new mail. Mutt will only check for new mail over existing IMAP connections
+unset imap_passive
+# the maximum amount of time in seconds that mutt will wait before polling open IMAP connections, to prevent the server from closing
+set imap_keepalive = 300
+# how often to check for new mail (time in seconds).
+set mail_check = 60
+set folder = imaps://imap.<gmail.com>:993
+# defaul inbox
+#mailboxes = +INBOX
+set spoolfile = +INBOX
+# save drafts to Dratfs
+set postponed = +Drafts
+# save sent to Sent
+set record = +Sent
+# cache locally
+#set header_cache = ~/.cache/mutt
+#set message_cachedir = ~/.cache/mutta
+
+############
+### SMTP ###
+############
+set smtp_pass = $imap_pass
+set smtp_url=smtps://$imap_user@smtp.<gmail.com>:<587>
+set ssl_force_tls = yes
+set realname = "<Name>"
+set from = $imap_user
+set use_from = yes
+
+set charset = utf-8
+# skip to compose when replying
+set fast_reply
+# include message in replies
+set include
+# include message in forwards
+set forward_quote
+# sorting
+set sort = threads
+set sort_aux = reverse-last-date-received
+# leave read messages in inbox
+set move = no
+
+###############
+### Sidebar ###
+###############
+set sidebar_visible = yes
+set sidebar_width = 35
+set sidebar_sort_method = path
+# remove INBOX.Foldername - leave just Foldername
+set sidebar_short_path
+# for the sidebar_format
+set mail_check_stats
+#set sidebar_format = "%B%?F? [%F]?%* %?N?%N/?%S"
+# build a tree
+set sidebar_folder_indent
+# tree with spaces
+set sidebar_indent_string="  "
+# navigation
+bind index,pager \Ck sidebar-prev # Ctrl-p - Previous Mailbox
+bind index,pager \Cj sidebar-next # Ctrl-n - Next Mailbox
+bind index,pager \Co sidebar-open # Ctrl-o - Open Highlighted Mailbox
+bind index,pager \Cb sidebar-toggle-visible # Ctrl+b - Display/Hide Sidebar
+
+set sleep_time = 0
+# scroll message line by line using arraws
+bind pager <up> previous-line
+bind pager <down> next-line
+
+# scroll index line by line
+set menu_scroll
+
+set visual=vim
+set editor=vim
+
+##############
+### Colors ###
+##############
+# header
+color header blue default ".*"
+color header brightmagenta default "^(From)"
+color header brightcyan default "^(Subject)"
+color header brightwhite default "^(CC|BCC)"
+
+# old unread messages
+color index green default "~O"
+# new unread messages
+color index brightgreen default "~N"
+# messages to me
+color index cyan default "~p"
+color index brightcyan default "~p~O"
+color index brightcyan default "~p~N"
+# messages from me
+color index yellow default "~P"
+# tagged messages
+color index red default "~T"
+# messages about to be deleted
+color index brightyellow default "~D"
+
+color sidebar_highlight black cyan
+color sidebar_divider brightblack default
+color sidebar_flagged yellow default
+color sidebar_new green default
+
+#Body colors
+color body brightred default "[\-\.+_a-zA-Z0-9]+@[\-\.a-zA-Z0-9]+" # Email addresses
+color body brightblue default "(https?|ftp)://[\-\.,/%~_:?&=\#a-zA-Z0-9]+" # URL
+color body green default "\`[^\`]*\`" # Green text between ` and `
+color body brightblue default "^# \.*" # Headings as bold blue
+color body brightcyan default "^## \.*" # Subheadings as bold cyan
+color body brightgreen default "^### \.*" # Subsubheadings as bold green
+color body yellow default "^(\t| )*(-|\\*) \.*" # List items as yellow
+color body brightcyan default "[;:][-o][)/(|]" # emoticons
+color body brightcyan default "[;:][)(|]" # emoticons
+color body brightcyan default "[ ][*][^*]*[*][ ]?" # more emoticon?
+color body brightcyan default "[ ]?[*][^*]*[*][ ]" # more emoticon?
+color body red default "([a-z][a-z0-9+-]*://(((([a-z0-9_.!~*'();:&=+$,-]|%[0-9a-f][0-9a-f])*@)?((([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?|[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+)(:[0-9]+)?)|([a-z0-9_.!~*'()$,;:@&=+-]|%[0-9a-f][0-9a-f])+)(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*(/([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*(;([a-z0-9_.!~*'():@&=+$,-]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?(#([a-z0-9_.!~*'();/?:@&=+$,-]|%[0-9a-f][0-9a-f])*)?|(www|ftp)\\.(([a-z0-9]([a-z0-9-]*[a-z0-9])?)\\.)*([a-z]([a-z0-9-]*[a-z0-9])?)\\.?(:[0-9]+)?(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*(/([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*(;([-a-z0-9_.!~*'():@&=+$,]|%[0-9a-f][0-9a-f])*)*)*)?(\\?([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?(#([-a-z0-9_.!~*'();/?:@&=+$,]|%[0-9a-f][0-9a-f])*)?)[^].,:;!)? \t\r\n<>\"]"
+
+color normal brightyellow default
+color error red default
+color tilde black default
+color message cyan default
+color markers red white
+color attachment white default
+color search brightmagenta default
+color status brightyellow black
+color hdrdefault brightgreen default
+color quoted green default
+color quoted1 blue default
+color quoted2 cyan default
+color quoted3 yellow default
+color quoted4 red default
+color quoted5 brightred default
+color signature brightgreen default
+color bold black default
+color underline black default
+color normal default default
