@@ -17,10 +17,6 @@ font pango:Terminus 14
 ##################################
 #>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>#
 
-##АВТОЗАПУСК ПРОГРАММ##
-
-##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-
 #Раскладка клавиатуры
 input * {
     xkb_layout "us,ru"
@@ -30,8 +26,8 @@ input * {
 #Обои и GUI
 output * bg /usr/share/backgrounds/desktop-image.png fill
 #Старт меню rofi
-bindsym $mod+space exec --no-startup-id wofi -theme DarkBlue -font "Terminus 14" -show run
-
+bindsym --to-code $mod+space exec --no-startup-id rofi -theme DarkBlue -font "Terminus 14" -show run
+#bindsym $mod+space exec dmenu_path | wofi -c ~/.config/sway/other/wofi/config -s ~/.config/sway/other/wofi/style.css --show dmenu | xargs swaymsg exec --
 
 #Пользовательские программы
 exec --no-startup-id urxvt
@@ -60,14 +56,14 @@ for_window [tiling] border pixel 3
 ##Быстрый вызов программ##
 
 #bindsym $mod+F1 exec --no-startup-id
-bindsym $mod+F2 exec --no-startup-id firefox; workspace 2
-bindsym $mod+F3 exec --no-startup-id ranger; workspace 3
-bindsym $mod+F4 exec --no-startup-id emacs; workspace 4
+bindsym $mod+F2 workspace 2; exec --no-startup-id firefox
+bindsym $mod+F3 workspace 3; exec --no-startup-id ranger
+bindsym $mod+F4 workspace 4; exec --no-startup-id emacs
 bindsym $mod+F5 exec --no-startup-id gnome-calculator
-bindsym $mod+F6 exec --no-startup-id libreoffice; workspace 5
+bindsym $mod+F6 workspace 5; exec --no-startup-id libreoffice
 #bindsym $mod+F7 exec --no-startup-id
 #bindsym $mod+F8 exec --no-startup-id
-bindsym $mod+F9 exec --no-startup-id vlc; workspace 9
+bindsym $mod+F9 workspace 9
 #bindsym $mod+F10 exec --no-startup-id
 
 # Открытие программ в плавающе окне
@@ -76,10 +72,10 @@ for_window [class="Urxvt"] floating enable
 
 ##Горячие клавиши##
 
-bindsym $mod+q kill
-bindsym $mod+Return exec --no-startup-id urxvt
-bindsym $mod+Escape exec shutdown -h now
-bindsym $mod+Shift+Escape exec reboot
+bindsym --to-code $mod+q kill
+bindsym --to-code $mod+Return exec --no-startup-id urxvt
+bindsym --to-code $mod+Escape exec shutdown -h now
+bindsym --to-code $mod+Shift+Escape exec reboot
 
 
 # Cпрятать окно, чтобы оно не мешалось, но в то же время было всегда под рукой.
@@ -89,13 +85,13 @@ bindsym $mod+Shift+Escape exec reboot
 
 #Сделать снимок экрана
 # Screenshot active display
-bindsym Print exec grim -t png ~/pictures/"$(date +%Y-%m-%d_%H-%M-%S)".png
+bindsym --to-code Print exec grim -t png ~/pictures/"$(date +%Y-%m-%d_%H-%M-%S)".png
 
 # Screenshot current window
-bindsym $mod+Print exec grim -g "$(swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"')" ~/pictures/"$(date +%Y-%m-%d_%H-%M-%S)".png
+bindsym --to-code $mod+Print exec grim -g "$(swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"')" ~/pictures/"$(date +%Y-%m-%d_%H-%M-%S)".png
 
 # Screenshot selected region
-bindsym $mod+Shift+Print exec grim -t png -g "$(slurp)" ~/pictures/"$(date +%Y-%m-%d_%H-%M-%S)".png
+bindsym --to-code $mod+Shift+Print exec grim -t png -g "$(slurp)" ~/pictures/"$(date +%Y-%m-%d_%H-%M-%S)".png
 
 #========================================================#
 
@@ -132,54 +128,55 @@ floating_modifier $mod
 #
 # Moving around:
 #
-    # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
-    # Or use $mod+[up|down|left|right]
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
 
-    # Move the focused window with the same, but add Shift
-    bindsym $mod+Shift+$left move left
-    bindsym $mod+Shift+$down move down
-    bindsym $mod+Shift+$up move up
-    bindsym $mod+Shift+$right move right
-    # Ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
+# Move your focus around
+bindsym --to-code $mod+$left focus left
+bindsym --to-code $mod+$down focus down
+bindsym --to-code $mod+$up focus up
+bindsym --to-code $mod+$right focus right
+# Or use $mod+[up|down|left|right]
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move the focused window with the same, but add Shift
+bindsym --to-code $mod+Shift+$left move left
+bindsym --to-code $mod+Shift+$down move down
+bindsym --to-code $mod+Shift+$up move up
+bindsym --to-code $mod+Shift+$right move right
+# Ditto, with arrow keys
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
 
 
 # split in horizontal orientation
-bindsym $mod+g split h
+bindsym --to-code $mod+g split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym --to-code $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+bindsym --to-code $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym --to-code $mod+s layout stacking
+bindsym --to-code $mod+w layout tabbed
+bindsym --to-code $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym --to-code $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+z focus mode_toggle
+bindsym --to-code $mod+z focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+bindsym --to-code $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+#bindsym --to-code $mod+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -219,11 +216,11 @@ bindsym $mod+Shift+9 move container to workspace number $ws9
 bindsym $mod+Shift+0 move container to workspace number $ws10
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+bindsym --to-code $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
+bindsym --to-code $mod+Shift+r restart
 # Exit sway (logs you out of your Wayland session)
-bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+bindsym --to-code $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
 
 
 #
@@ -234,10 +231,10 @@ mode "resize" {
     # right will grow the containers width
     # up will shrink the containers height
     # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
+    bindsym --to-code $left resize shrink width 10px
+    bindsym --to-code $down resize grow height 10px
+    bindsym --to-code $up resize shrink height 10px
+    bindsym --to-code $right resize grow width 10px
 
     # Ditto, with arrow keys
     bindsym Left resize shrink width 10px
@@ -249,7 +246,7 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+r mode "resize"
+bindsym --to-code $mod+r mode "resize"
 
 bar {
     swaybar_command waybar
@@ -264,5 +261,10 @@ exec_always {
     gsettings set $gnome-schema font-name 'Terminus 13'
     gsettings set $gnome-schema button-image 0
 }
+
+##АВТОЗАПУСК ПРОГРАММ##
+exec mako
+
+##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 #include /etc/sway/config.d/*

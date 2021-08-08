@@ -15,7 +15,7 @@ fi
 updates=$(("$updates_arch" + "$updates_aur"))
 
 if [ "$updates" -gt 0 ]; then
-    echo %{u#1e88e5}" P:$updates_arch Y:$updates_aur"
+    echo %{u#1e88e5}"P:$updates_arch Y:$updates_aur"
 else
-    echo %{u#CACACA}" P:0 Y:0"
+    echo %{u#CACACA}"P:0 Y:0"
 fi

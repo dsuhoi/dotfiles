@@ -16,17 +16,17 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-plug'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 " Plug 'ycm-core/YouCompleteMe'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
-" Plug 'ryanoasis/vim-devicons'
 Plug 'jiangmiao/auto-pairs'
 Plug 'ap/vim-css-color'
-Plug 'honza/vim-snippets'
 Plug 'tpope/vim-fugitive'
-Plug 'kien/ctrlp.vim' 
 Plug 'preservim/tagbar'
 Plug 'easymotion/vim-easymotion'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'lervag/vimtex'
 " All of your Plugins must be added before the following line
 call plug#end()
 
@@ -62,13 +62,18 @@ set hidden
 "-----------------
 colorscheme ron
 
-
 " Plugin settings
 "-----------------
 " YMC
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_autoclose_preview_window_after_completion = 1 
+let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_max_num_candidates = 30
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
+let g:ycm_key_list_stop_completion = ['<C-Space>']
+
 
 " NERDTree
 nnoremap <leader>n :NERDTreeFocus<CR>
@@ -79,21 +84,41 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#keymap#enabled = 0
 let g:Powerline_symbols='unicode'
 let g:airline#extensions#xkblayout#enabled = 0
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail'
 
 " UltiSnips
-let g:UltiSnipsExpandTrigger="<C-j>"
-let g:UltiSnipsJumpForwardTrigger="<C-j>"
-let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpForwardTrigger='<tab>'
+let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
+let g:UltiSnipsRemoveSelectModeMappings = 1
 
-" Ctrlp
-let g:ctrlp_map = '<C-p>'
-let g:ctrlp_cmd = 'CtrlP'
+" Termdebug
+nnoremap ,m :Break<CR>
+nnoremap ,n :Clear<CR>
+nnoremap ,o :Over<CR>
+nnoremap ,s :Step<CR>
+nnoremap ,c :Continue<CR>
+nnoremap ,p :Stop<CR>
+nnoremap ,f :Finish<CR>
+nnoremap ,k :Evaluate<CR>
+nnoremap ,r :Run<CR>
 
 " Tagbar
-nnoremap <F8> :TagbarToggle<CR>
+nnoremap <C-t> :TagbarToggle<CR>
 
 " EasyMotion
 nmap <Leader>w <Plug>(easymotion-overwin-w)
-nmap <Leader>f <Plug>(easymotion-overwin-f)
+nmap <Leader>c <Plug>(easymotion-overwin-f)
 nmap <Leader>L <Plug>(easymotion-overwin-line)
 
+" FZF
+nnoremap <silent> <Leader>f :Files<CR>
+nnoremap <silent> <Leader>g :Rg<CR>
+
+" LaTex
+let g:tex_flavor='latex'
+let g:vimtex_view_method='zathura'
+let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:tex_conceal='abdmg'

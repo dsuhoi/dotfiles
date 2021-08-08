@@ -12,6 +12,7 @@ alias pacman='pacman --color=always'
 alias dir='dir --color=always'
 alias diff='diff --color=always'
 
+
 # PS1
 INPUT_COLOR="\[\033[0m\]"
 DIR_COLOR="\[\033[0;33m\]"

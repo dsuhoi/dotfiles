@@ -37,10 +37,10 @@ exec --no-startup-id setxkbmap "us,ru" ",winkeys" "grp:alt_shift_toggle,grp_led:
 
 #Обои и GUI
 #exec --no-startup-id nitrogen --restore; sleep 1; compton -b
-exec --no-startup-id feh --bg-scale /usr/share/backgrounds/desktop-image.jpg;  sleep 1; compton -b
+exec --no-startup-id feh --bg-scale /usr/share/backgrounds/desktop-image.png;  sleep 1; compton -b
 
 #Старт меню rofi
-bindsym $mod+space exec --no-startup-id rofi -theme DarkBlue -font "hack 10" -show run
+bindsym $mod+space exec --no-startup-id rofi -theme DarkBlue -font "terminus 14" -show run
 
 
 #Пользовательские программы
@@ -55,10 +55,10 @@ exec --no-startup-id urxvt
 default_border pixel
 
 # Когда открыто одно окно, оно открывется на весь экран без отступов
-#smart_gaps on
+smart_gaps on
 
 # Отступы между открытыми окнами
-#gaps inner 0
+gaps inner 10
 
 # Включает умные рамки, когда открыто одно окно рамки выключаются
 #smart_borders on
