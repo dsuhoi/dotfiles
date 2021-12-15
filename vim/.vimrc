@@ -40,7 +40,7 @@ set shiftwidth=4    " indent width
 set number          " show number line
 
 set wrap linebreak nolist
-set textwidth=80
+"set textwidth=80
 
 " Make Indentation
 autocmd filetype make set noexpandtab
@@ -73,7 +73,7 @@ let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
 let g:ycm_key_list_stop_completion = ['<C-Space>']
-
+let g:ycm_python_binary_path='/usr/bin/python3'
 
 " NERDTree
 nnoremap <leader>n :NERDTreeFocus<CR>
