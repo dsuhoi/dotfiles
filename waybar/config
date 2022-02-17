@@ -5,8 +5,8 @@
     // "width": 1280, // Waybar width
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
-    "modules-center": [],
-    "modules-right": ["pulseaudio", "memory", "temperature", "network", "sway/language", "battery", "battery#bat2", "clock", "tray"],
+    "modules-center": ["custom/cmus"],
+    "modules-right": ["custom/weather", "pulseaudio", "memory", "custom/pacman", "temperature", "network", "sway/language", "battery", "battery#bat2", "clock", "tray"],
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
@@ -22,7 +22,6 @@
         "spacing": 10
     },
     "clock": {
-        // "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format-alt": "{:%Y-%m-%d}"
     },
@@ -89,5 +88,29 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
+    },
+    "custom/cmus": {
+        "format": "♪ {}",
+        "max-length": 35,
+        "interval": 10,
+        "exec": "cmus-remote -C \"format_print '%a - %t'\"", // artist - title
+        "exec-if": "pgrep cmus",
+        "on-click": "cmus-remote -u",                        //toggle pause
+        "escape": true                                       //handle markup entities
+    },
+    "custom/pacman": {
+        "format": "{}",
+        "interval": 3600,                     // every hour
+        "exec": "echo \"P:$(checkupdates | wc -l) Y:$(yay -Qum | wc -l)\"",       // # of updates
+        "exec-if": "exit 0",                  // always run; consider advanced run conditions
+        /* "on-click": "termite -e 'sudo pacman -Syu'; pkill -SIGRTMIN+8 waybar", // update system */
+        "signal": 8
+    },
+    "custom/weather": {
+        "format": "{}",
+        "tooltip": true,
+        "interval": 3600,
+        "exec": "python ~/.config/waybar/scripts/waybar-wttr.py",
+        "return-type": "json"
     },
 }

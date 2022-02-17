@@ -78,6 +78,9 @@ window#waybar.chromium {
 #mode,
 #idle_inhibitor,
 #window,
+#custom-cmus,
+#custom-pacman,
+#custom-weather,
 #workspaces {
     margin: 0 4px;
 }
@@ -162,7 +165,7 @@ label:focus {
     /*color: #2a5c45;*/
 }
 
-#custom-media {
+#custom-cmus {
     border-bottom: 3px solid #66cc99;
     /*color: #2a5c45;*/
     min-width: 100px;
@@ -199,4 +202,12 @@ label:focus {
     padding: 0 5px;
     margin: 0 5px;
     min-width: 16px;
+}
+
+#custom-pacman {
+    border-bottom: 3px solid #66cc99;
+}
+
+#custom-weather {
+    border-bottom: 3px solid #f0932b;
 }

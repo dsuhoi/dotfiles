@@ -57,18 +57,17 @@ for_window [tiling] border pixel 3
 
 #bindsym $mod+F1 exec --no-startup-id
 bindsym $mod+F2 workspace 2; exec --no-startup-id firefox
-bindsym $mod+F3 workspace 3; exec --no-startup-id ranger
-bindsym $mod+F4 workspace 4; exec --no-startup-id emacs
+#bindsym $mod+F3 workspace 3; exec --no-startup-id 
+#bindsym $mod+F4 workspace 4; exec --no-startup-id
 bindsym $mod+F5 exec --no-startup-id gnome-calculator
 bindsym $mod+F6 workspace 5; exec --no-startup-id libreoffice
 #bindsym $mod+F7 exec --no-startup-id
 #bindsym $mod+F8 exec --no-startup-id
-bindsym $mod+F9 workspace 9
+#bindsym $mod+F9 workspace 9
 #bindsym $mod+F10 exec --no-startup-id
 
 # Открытие программ в плавающе окне
-for_window [class="Gnome-calculator"] floating enable
-for_window [class="Urxvt"] floating enable
+for_window [app_id="gnome-calculator"] floating enable
 
 ##Горячие клавиши##
 
