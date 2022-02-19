@@ -9,6 +9,8 @@ set $down j
 set $up k
 set $right l
 
+set $term alacritty
+
 ##ШРИФТЫ##
 font pango:Terminus 14
 
@@ -26,11 +28,11 @@ input * {
 #Обои и GUI
 output * bg /usr/share/backgrounds/desktop-image.png fill
 #Старт меню rofi
-bindsym --to-code $mod+space exec --no-startup-id rofi -theme DarkBlue -font "Terminus 14" -show run
+bindsym --to-code $mod+space exec --no-startup-id wofi -b --TERM=$term --show=drun
 #bindsym $mod+space exec dmenu_path | wofi -c ~/.config/sway/other/wofi/config -s ~/.config/sway/other/wofi/style.css --show dmenu | xargs swaymsg exec --
 
 #Пользовательские программы
-exec --no-startup-id urxvt
+exec --no-startup-id $term
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -72,7 +74,7 @@ for_window [app_id="gnome-calculator"] floating enable
 ##Горячие клавиши##
 
 bindsym --to-code $mod+q kill
-bindsym --to-code $mod+Return exec --no-startup-id urxvt
+bindsym --to-code $mod+Return exec --no-startup-id $term
 bindsym --to-code $mod+Escape exec shutdown -h now
 bindsym --to-code $mod+Shift+Escape exec reboot
 
@@ -263,7 +265,7 @@ exec_always {
 
 ##АВТОЗАПУСК ПРОГРАММ##
 exec mako
-
+exec udiskie
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 #include /etc/sway/config.d/*

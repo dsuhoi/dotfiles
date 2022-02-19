@@ -31,7 +31,7 @@ OSH_THEME="zork"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -118,3 +118,8 @@ source "$OSH"/oh-my-bash.sh
 # Example aliases
 # alias bashconfig="mate ~/.bashrc"
 # alias ohmybash="mate ~/.oh-my-bash"
+
+# FZF
+export FZF_DEFAULT_OPTS='-m --height 40% --layout=reverse --border'
+source /usr/share/fzf/completion.bash
+source /usr/share/fzf/key-bindings.bash

@@ -12,7 +12,7 @@
 #клавиша управления
 set $mod Mod4
 
-
+set $term alacritty
 
 ##ШРИФТЫ##
 font pango:hack regular 8
@@ -44,7 +44,7 @@ bindsym $mod+space exec --no-startup-id rofi -theme DarkBlue -font "terminus 14"
 
 
 #Пользовательские программы
-exec --no-startup-id urxvt
+exec --no-startup-id $term
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
@@ -92,13 +92,12 @@ bindsym $mod+F9 exec --no-startup-id vlc; workspace 9
 
 
 # Открытие программ в плавающе окне
-for_window [class="Gnome-calculator"] floating enable
-for_window [class="Urxvt"] floating enable
+for_window [class="gnome-calculator"] floating enable
 
 ##Горячие клавиши##
 
 bindsym $mod+q kill
-bindsym $mod+Return exec --no-startup-id urxvt
+bindsym $mod+Return exec --no-startup-id $term
 bindsym $mod+Escape exec shutdown -h now
 bindsym $mod+Shift+Escape exec reboot
 

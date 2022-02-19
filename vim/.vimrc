@@ -21,6 +21,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'jiangmiao/auto-pairs'
 Plug 'ap/vim-css-color'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'preservim/tagbar'
 Plug 'easymotion/vim-easymotion'
@@ -49,6 +50,7 @@ autocmd filetype make set nocin
 " Mouse
 set mousehide
 set mouse=a
+set ttymouse=sgr
 set termencoding=utf-8
 set novisualbell
 
@@ -66,8 +68,7 @@ colorscheme ron
 "-----------------
 " YMC
 let g:ycm_show_diagnostics_ui = 0
-let g:ycm_autoclose_preview_window_after_completion = 1 
-let g:ycm_autoclose_preview_window_after_insertion = 1
+set completeopt=menuone
 let g:ycm_max_num_candidates = 30
 let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
 let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
@@ -113,8 +114,11 @@ nmap <Leader>c <Plug>(easymotion-overwin-f)
 nmap <Leader>L <Plug>(easymotion-overwin-line)
 
 " FZF
-nnoremap <silent> <Leader>f :Files<CR>
-nnoremap <silent> <Leader>g :Rg<CR>
+nnoremap <silent> <Leader>f :FZF<CR>
+nnoremap <silent> <Leader>r :Rg<CR>
+nnoremap <silent> <Leader>; :Commands<CR>
+nnoremap <silent> <Leader>b :Buffers<CR>
+let g:fzf_layout = { 'down': '30%' }
 
 " LaTex
 let g:tex_flavor='latex'
