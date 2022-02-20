@@ -6,9 +6,9 @@ filetype plugin indent on
 syntax on
 
 " Install vim-plug
-if empty(glob('~/.vim/autoload/plug.vim')) 
+if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim 
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -18,7 +18,9 @@ Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 " Plug 'ycm-core/YouCompleteMe'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
-Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline'
+Plug 'maximbaz/lightline-ale'
 Plug 'jiangmiao/auto-pairs'
 Plug 'ap/vim-css-color'
 Plug 'tpope/vim-commentary'
@@ -27,6 +29,9 @@ Plug 'preservim/tagbar'
 Plug 'easymotion/vim-easymotion'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'sheerun/vim-polyglot'
+Plug 'dense-analysis/ale'
+Plug 'prettier/vim-prettier'
 Plug 'lervag/vimtex'
 " All of your Plugins must be added before the following line
 call plug#end()
@@ -59,7 +64,6 @@ set noswapfile
 
 set hidden
 
-
 " color scheme
 "-----------------
 colorscheme ron
@@ -79,14 +83,45 @@ let g:ycm_python_binary_path='/usr/bin/python3'
 " NERDTree
 nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTreeToggle<CR>
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 
-" PowerLine
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#keymap#enabled = 0
-let g:Powerline_symbols='unicode'
-let g:airline#extensions#xkblayout#enabled = 0
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#formatter = 'unique_tail'
+" LightLine
+set laststatus=2
+set showtabline=2
+let g:lightline#bufferline#unnamed = '[No Name]'
+
+let g:lightline = {'colorscheme': 'default'}
+let g:lightline.active = {
+    \ 'left':  [['mode', 'paste'], ['gitbranch', 'readonly', 'filename', 'modified']],
+    \ 'right': [['linter_checking', 'linter_errors', 'linter_warnings'],
+    \ ['lineinfo'], ['percent'], ['fileformat', 'fileencoding', 'filetype']],
+    \}
+let g:lightline.tabline = {'left': [['buffers']], 'right': [['close']]}
+let g:lightline.component_expand = {
+    \ 'buffers':         'lightline#bufferline#buffers',
+    \ 'linter_checking': 'lightline#ale#checking',
+    \ 'linter_warnings': 'lightline#ale#warnings',
+    \ 'linter_errors':   'lightline#ale#errors',
+    \}
+let g:lightline.component_type = {
+    \ 'buffers':         'tabsel',
+    \ 'linter_checking': 'right',
+    \ 'linter_warnings': 'warning',
+    \ 'linter_errors':   'error',
+    \}
+let g:lightline.component_function = {'gitbranch': 'FugitiveHead'}
+
+nmap <Leader>1 <Plug>lightline#bufferline#go(1)
+nmap <Leader>2 <Plug>lightline#bufferline#go(2)
+nmap <Leader>3 <Plug>lightline#bufferline#go(3)
+nmap <Leader>4 <Plug>lightline#bufferline#go(4)
+nmap <Leader>5 <Plug>lightline#bufferline#go(5)
+nmap <Leader>6 <Plug>lightline#bufferline#go(6)
+nmap <Leader>7 <Plug>lightline#bufferline#go(7)
+nmap <Leader>8 <Plug>lightline#bufferline#go(8)
+nmap <Leader>9 <Plug>lightline#bufferline#go(9)
+nmap <Leader>0 <Plug>lightline#bufferline#go(10)
+
 
 " UltiSnips
 let g:UltiSnipsExpandTrigger='<tab>'
@@ -116,9 +151,42 @@ nmap <Leader>L <Plug>(easymotion-overwin-line)
 " FZF
 nnoremap <silent> <Leader>f :FZF<CR>
 nnoremap <silent> <Leader>r :Rg<CR>
-nnoremap <silent> <Leader>; :Commands<CR>
 nnoremap <silent> <Leader>b :Buffers<CR>
 let g:fzf_layout = { 'down': '30%' }
+
+" ALE
+let g:ale_enabled = 0
+let g:ale_change_sign_column_color = 1
+let g:ale_linters = {
+    \ 'c':      ['ccls', 'clang'],
+    \ 'cpp':    ['clang'],
+    \ 'python': ['flake8'],
+    \ 'vim': ['vint'],
+    \}
+let g:ale_fixers = {
+    \ '*':      ['remove_trailing_lines', 'trim_whitespace'],
+    \ 'c':      ['clang-format'],
+    \ 'cpp':    ['clang-format'],
+    \ 'css':    ['prettier'],
+    \ 'json':   ['prettier'],
+    \ 'html':   ['prettier'],
+    \ 'python': ['black', 'isort'],
+    \}
+let g:ale_c_clangformat_style_option = '{
+    \ "BasedOnStyle": "Google",
+    \ "IndentWidth": 4,
+    \ "AccessModifierOffset": -4,
+    \ "BreakBeforeBraces": "Stroustrup",
+    \ "AlignConsecutiveMacros": "true",
+    \ "AlignTrailingComments": "true",
+    \}'
+
+let g:ale_fix_on_save = 1
+highlight ALEErrorSign ctermfg=9
+highlight ALEWarningSign ctermfg=11
+highlight clear ALESignColumnWithErrors
+highlight clear  ALESignColumnWithoutErrors
+nmap <Leader>z :ALEToggle<CR>
 
 " LaTex
 let g:tex_flavor='latex'
