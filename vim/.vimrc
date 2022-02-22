@@ -79,6 +79,7 @@ let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
 let g:ycm_key_list_stop_completion = ['<C-Space>']
 let g:ycm_python_binary_path='/usr/bin/python3'
+highlight Pmenu ctermfg=15 ctermbg=0
 
 " NERDTree
 nnoremap <leader>n :NERDTreeFocus<CR>
@@ -161,7 +162,7 @@ let g:ale_linters = {
     \ 'c':      ['ccls', 'clang'],
     \ 'cpp':    ['clang'],
     \ 'python': ['flake8'],
-    \ 'vim': ['vint'],
+    \ 'vim':    ['vint'],
     \}
 let g:ale_fixers = {
     \ '*':      ['remove_trailing_lines', 'trim_whitespace'],
