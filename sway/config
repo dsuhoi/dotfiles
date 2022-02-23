@@ -93,9 +93,6 @@ bindsym --to-code $mod+Print exec grim -g "$(swaymsg -t get_tree | jq -r '.. | s
 # Screenshot selected region
 bindsym --to-code $mod+Shift+Print exec grim -t png -g "$(slurp)" ~/pictures/"$(date +%Y-%m-%d_%H-%M-%S)".png
 
-# Text image to clipboard
-bindsym --to-code $mod+Ctrl+Print exec grim -t png -g "$(slurp)" ~/.clip && tesseract -l eng+rus ~/.clip stdout | wl-copy && rm ~/.clip
-
 #========================================================#
 
 input type:touchpad {

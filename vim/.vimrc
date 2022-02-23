@@ -61,6 +61,7 @@ set novisualbell
 
 set nobackup
 set noswapfile
+nnoremap <C-@> :call system("wl-copy", @")<CR>
 
 set hidden
 
