@@ -27,9 +27,8 @@ input * {
 
 #Обои и GUI
 output * bg /usr/share/backgrounds/desktop-image.png fill
-#Старт меню rofi
+#Старт меню wofi
 bindsym --to-code $mod+space exec --no-startup-id wofi -b --TERM=$term --show=drun
-#bindsym $mod+space exec dmenu_path | wofi -c ~/.config/sway/other/wofi/config -s ~/.config/sway/other/wofi/style.css --show dmenu | xargs swaymsg exec --
 
 #Пользовательские программы
 exec --no-startup-id $term
@@ -59,7 +58,7 @@ for_window [tiling] border pixel 3
 
 #bindsym $mod+F1 exec --no-startup-id
 bindsym $mod+F2 workspace 2; exec --no-startup-id firefox
-#bindsym $mod+F3 workspace 3; exec --no-startup-id 
+#bindsym $mod+F3 workspace 3; exec --no-startup-id
 #bindsym $mod+F4 workspace 4; exec --no-startup-id
 bindsym $mod+F5 exec --no-startup-id gnome-calculator
 bindsym $mod+F6 workspace 5; exec --no-startup-id libreoffice
@@ -93,6 +92,9 @@ bindsym --to-code $mod+Print exec grim -g "$(swaymsg -t get_tree | jq -r '.. | s
 
 # Screenshot selected region
 bindsym --to-code $mod+Shift+Print exec grim -t png -g "$(slurp)" ~/pictures/"$(date +%Y-%m-%d_%H-%M-%S)".png
+
+# Text image to clipboard
+bindsym --to-code $mod+Ctrl+Print exec grim -t png -g "$(slurp)" ~/.clip && tesseract -l eng+rus ~/.clip stdout | wl-copy && rm ~/.clip
 
 #========================================================#
 
@@ -266,6 +268,8 @@ exec_always {
 ##АВТОЗАПУСК ПРОГРАММ##
 exec mako
 exec udiskie
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
 #include /etc/sway/config.d/*
