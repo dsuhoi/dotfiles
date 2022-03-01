@@ -88,7 +88,7 @@ bindsym --to-code $mod+Shift+Escape exec reboot
 bindsym --to-code Print exec grim -t png ~/pictures/"$(date +%Y-%m-%d_%H-%M-%S)".png
 
 # Screenshot current window
-bindsym --to-code $mod+Print exec grim -g "$(swaymsg -t get_tree | jq -r '.. | select(.pid? and .visible?) | .rect | "\(.x),\(.y) \(.width)x\(.height)"')" ~/pictures/"$(date +%Y-%m-%d_%H-%M-%S)".png
+bindsym --to-code $mod+Print exec grim -g "$(slurp)" - | wl-copy
 
 # Screenshot selected region
 bindsym --to-code $mod+Shift+Print exec grim -t png -g "$(slurp)" ~/pictures/"$(date +%Y-%m-%d_%H-%M-%S)".png

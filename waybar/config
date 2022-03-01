@@ -106,6 +106,10 @@
         /* "on-click": "termite -e 'sudo pacman -Syu'; pkill -SIGRTMIN+8 waybar", // update system */
         "signal": 8
     },
+    /* "custom/weather": { */
+    /*     "exec": "curl 'https://wttr.in/Moscow?format=1'", */
+    /*     "interval": 3600 */
+    /* }, */
     "custom/weather": {
         "format": "{}",
         "tooltip": true,
