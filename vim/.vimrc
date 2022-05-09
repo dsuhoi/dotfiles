@@ -15,7 +15,7 @@ endif
 call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-plug'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-" Plug 'ycm-core/YouCompleteMe'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'
@@ -60,6 +60,7 @@ set termencoding=utf-8
 set novisualbell
 
 set nobackup
+set nowritebackup
 set noswapfile
 nnoremap <C-@> :call system("wl-copy", @")<CR>
 
@@ -71,15 +72,25 @@ colorscheme ron
 
 " Plugin settings
 "-----------------
-" YMC
-let g:ycm_show_diagnostics_ui = 0
-set completeopt=menuone
-let g:ycm_max_num_candidates = 30
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
-let g:ycm_key_list_select_completion = ['<C-j>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-k>', '<Up>']
-let g:ycm_key_list_stop_completion = ['<C-Space>']
-let g:ycm_python_binary_path='/usr/bin/python3'
+" Coc.nvim
+let g:coc_global_extensions = [ 'coc-json', 'coc-python', 'coc-clangd' ]
+let b:coc_diagnostic_disable=1
+let b:coc_diagnostic_info={'information': 0, 'hint': 0, 'lnums': [0, 0, 0, 0], 'warning': 0, 'error': 0}
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> gn <Plug>(coc-rename)
+
+inoremap <silent><expr> <C-j>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<C-j>" :
+      \ coc#refresh()
+inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
 highlight Pmenu ctermfg=15 ctermbg=8
 
 " NERDTree
@@ -158,6 +169,7 @@ let g:fzf_layout = { 'down': '30%' }
 
 " ALE
 let g:ale_enabled = 0
+let g:ale_disable_lsp = 1
 let g:ale_change_sign_column_color = 1
 let g:ale_linters = {
     \ 'c':      ['ccls', 'clang'],
