@@ -27,7 +27,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 Plug 'preservim/tagbar'
 Plug 'easymotion/vim-easymotion'
-Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'sheerun/vim-polyglot'
 Plug 'dense-analysis/ale'
@@ -68,12 +67,12 @@ set hidden
 
 " color scheme
 "-----------------
-colorscheme ron
+"colorscheme ron
 
 " Plugin settings
 "-----------------
 " Coc.nvim
-let g:coc_global_extensions = [ 'coc-json', 'coc-python', 'coc-clangd' ]
+let g:coc_global_extensions = [ 'coc-json', 'coc-python', 'coc-clangd', 'coc-snippets']
 let b:coc_diagnostic_disable=1
 let b:coc_diagnostic_info={'information': 0, 'hint': 0, 'lnums': [0, 0, 0, 0], 'warning': 0, 'error': 0}
 nmap <silent> gd <Plug>(coc-definition)
@@ -92,6 +91,11 @@ function! s:check_back_space() abort
 endfunction
 
 highlight Pmenu ctermfg=15 ctermbg=8
+
+imap <tab> <Plug>(coc-snippets-expand-jump)
+let g:coc_snippet_next = '<tab>'
+let g:coc_snippet_prev = '<s-tab>'
+
 
 " NERDTree
 nnoremap <leader>n :NERDTreeFocus<CR>
@@ -136,12 +140,6 @@ nmap <Leader>9 <Plug>lightline#bufferline#go(9)
 nmap <Leader>0 <Plug>lightline#bufferline#go(10)
 
 
-" UltiSnips
-let g:UltiSnipsExpandTrigger='<tab>'
-let g:UltiSnipsJumpForwardTrigger='<tab>'
-let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
-let g:UltiSnipsRemoveSelectModeMappings = 1
-
 " Termdebug
 nnoremap ,m :Break<CR>
 nnoremap ,n :Clear<CR>
@@ -183,7 +181,6 @@ let g:ale_fixers = {
     \ 'cpp':    ['clang-format'],
     \ 'css':    ['prettier'],
     \ 'json':   ['prettier'],
-    \ 'html':   ['prettier'],
     \ 'python': ['black', 'isort'],
     \}
 let g:ale_c_clangformat_style_option = '{
