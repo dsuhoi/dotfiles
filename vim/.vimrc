@@ -2,6 +2,7 @@
 
 set nocompatible
 set encoding=utf-8
+set termencoding=utf-8
 filetype plugin indent on
 syntax on
 
@@ -13,26 +14,24 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'junegunn/vim-plug'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'itchyny/lightline.vim'
-Plug 'mengelbrecht/lightline-bufferline'
-Plug 'maximbaz/lightline-ale'
-Plug 'jiangmiao/auto-pairs'
 Plug 'ap/vim-css-color'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-fugitive'
-Plug 'preservim/tagbar'
+Plug 'dense-analysis/ale'
 Plug 'easymotion/vim-easymotion'
 Plug 'honza/vim-snippets'
-Plug 'sheerun/vim-polyglot'
-Plug 'dense-analysis/ale'
-Plug 'prettier/vim-prettier'
+Plug 'itchyny/lightline.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-plug'
 Plug 'lervag/vimtex'
-" All of your Plugins must be added before the following line
+Plug 'maximbaz/lightline-ale'
+Plug 'mengelbrecht/lightline-bufferline'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'preservim/tagbar'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'sheerun/vim-polyglot'
+Plug 'sjl/badwolf'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " Default Indentation
@@ -55,7 +54,6 @@ autocmd filetype make set nocin
 set mousehide
 set mouse=a
 set ttymouse=sgr
-set termencoding=utf-8
 set novisualbell
 
 set nobackup
@@ -67,13 +65,17 @@ set hidden
 
 " color scheme
 "-----------------
-"colorscheme ron
+colorscheme badwolf " Change BG color in function
+" highlight Normal guibg=NONE ctermbg=NONE
+" highlight EndOfBuffer guibg=NONE ctermbg=NONE
+" highlight LineNr guibg=NONE ctermbg=NONE
+" highlight ErrorMsg guibg=NONE ctermbg=NONE
 
 " Plugin settings
 "-----------------
 " Coc.nvim
-let g:coc_global_extensions = [ 'coc-json', 'coc-python', 'coc-clangd', 'coc-snippets']
-let b:coc_diagnostic_disable=1
+let g:coc_global_extensions = ['coc-json', 'coc-clangd', 'coc-python', 'coc-snippets', 'coc-pairs']
+let b:coc_diagnostic_disable = 1
 let b:coc_diagnostic_info={'information': 0, 'hint': 0, 'lnums': [0, 0, 0, 0], 'warning': 0, 'error': 0}
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
@@ -106,8 +108,6 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
-highlight Pmenu ctermfg=15 ctermbg=8
 
 let g:coc_snippet_next = '<tab>'
 let g:coc_snippet_prev = '<s-tab>'
@@ -166,6 +166,7 @@ nnoremap ,f :Finish<CR>
 nnoremap ,k :Evaluate<CR>
 nnoremap ,r :Run<CR>
 
+
 " Tagbar
 nnoremap <C-t> :TagbarToggle<CR>
 
@@ -194,29 +195,37 @@ let g:ale_fixers = {
     \ '*':      ['remove_trailing_lines', 'trim_whitespace'],
     \ 'c':      ['clang-format'],
     \ 'cpp':    ['clang-format'],
-    \ 'css':    ['prettier'],
-    \ 'json':   ['prettier'],
     \ 'python': ['black', 'isort'],
+    \ 'json':   ['prettier']
     \}
+
 let g:ale_c_clangformat_style_option = '{
     \ "BasedOnStyle": "Google",
+    \ "Standard": "Latest",
     \ "IndentWidth": 4,
     \ "AccessModifierOffset": -4,
-    \ "BreakBeforeBraces": "Stroustrup",
+    \ "BreakBeforeBraces": "Allman",
     \ "AlignConsecutiveMacros": "true",
     \ "AlignTrailingComments": "true",
     \}'
 
 let g:ale_fix_on_save = 1
-highlight ALEErrorSign ctermfg=9
-highlight ALEWarningSign ctermfg=11
+let b:ale_warn_about_trailing_whitespace = 0
+
+highlight ALEErrorSign ctermfg=9 guibg=NONE ctermbg=NONE
+highlight ALEWarningSign ctermfg=11 guibg=NONE ctermbg=NONE
 highlight clear ALESignColumnWithErrors
 highlight clear  ALESignColumnWithoutErrors
 nmap <Leader>z :ALEToggle<CR>
 
+let g:flake8_max_line_length=120
+let g:flake8_ignore="E203, W503, W504, E731"
+
+
 " LaTex
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
-let g:vimtex_quickfix_mode=0
-set conceallevel=1
-let g:tex_conceal='abdmg'
+let g:vimtex_view_general_viewer = 'zathura'
+let g:vimtex_view_general_options
+    \ = '-reuse-instance -forward-search @tex @line @pdf'
+let g:vimtex_quickfix_mode=1

@@ -1,0 +1,15 @@
+{
+  "diagnostic.enable": false,
+  "clangd.disableDiagnostics": true,
+  "diagnostic-languageserver.filetypes": {
+    "vim": "vint",
+    "c": "clang",
+    "cpp": "clang",
+    "python": "flake8"
+  },
+  "diagnostic-languageserver.formatFiletypes": {
+    "python": ["black", "isort"],
+    "c": "clang-format",
+    "cpp": "clang-format"
+  }
+}

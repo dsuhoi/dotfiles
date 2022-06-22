@@ -1,45 +1,52 @@
 global !p
 def math():
 	return vim.eval('vimtex#syntax#in_mathzone()') == '1'
-def comment(): 
+def comment():
 	return vim.eval('vimtex#syntax#in_comment()') == '1'
 def env(name):
-	[x,y] = vim.eval("vimtex#env#is_inside('" + name + "')") 
+	[x,y] = vim.eval("vimtex#env#is_inside('" + name + "')")
 	return x != '0' and y != '0'
 endglobal
 
 
 snippet template "Basic template" b
-\documentclass[a4paper]{article}
-
+\documentclass[a4paper,12pt]{extarticle}
 \usepackage[utf8]{inputenc}
 \usepackage[T2A]{fontenc}
 \usepackage{textcomp}
-\usepackage{amsmath, amssymb}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[russian]{babel}
+\usepackage{graphicx}
 
+\graphicspath{{./images/}}
 
-% figure support
-\usepackage{import}
-\usepackage{xifthen}
-\pdfminorversion=7
-\usepackage{pdfpages}
-\usepackage{transparent}
-\newcommand{\incfig}[1]{%
-	\def\svgwidth{\columnwidth}
-	\import{./figures/}{#1.pdf_tex}
-}
+%\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{conseq}[theorem]{Следствие}
+\newtheorem{lem}[theorem]{Лемма}
+\newtheorem{defn}[theorem]{Определение}
+\newtheorem{ex}[theorem]{Пример}
+\newtheorem{remark}[theorem]{Наблюдение}
+\numberwithin{equation}{section}
 
-\pdfsuppresswarningpagegroup=1
 
 \begin{document}
 	$0
 \end{document}
 endsnippet
 
-snippet beg "begin{} / end{}" 
+snippet beg "begin{} / end{}"
 \\begin{$1}
-	$0
+    $0
 \\end{$1}
+endsnippet
+
+snippet lab "\label"
+\\label{${1:text}} $0
+endsnippet
+
+snippet foot "footnote"
+\\footnote{${1:description}} $0
 endsnippet
 
 priority 100
@@ -67,7 +74,7 @@ snippet fig "Figure environment" b
 \end{figure}
 endsnippet
 
-snippet enum "Enumerate" 
+snippet enum "Enumerate"
 \begin{enumerate}
 	\item $0
 \end{enumerate}
@@ -112,9 +119,7 @@ else:
 endsnippet
 
 snippet dm "Math" wA
-\[
-${1:${VISUAL}}
-.\] $0
+\[ ${1:${VISUAL}} \] $0
 endsnippet
 
 snippet ali "Align" bA
@@ -201,7 +206,7 @@ snippet == "equals" iA
 endsnippet
 
 snippet != "equals" iA
-\neq 
+\neq
 endsnippet
 
 context "math()"
@@ -269,15 +274,15 @@ snippet taylor "taylor" w
 endsnippet
 
 snippet lim "limit" w
-\lim_{${1:n} \to ${2:\infty}} 
+\lim_{${1:n} \to ${2:\infty}}
 endsnippet
 
 snippet limsup "limsup" w
-\limsup_{${1:n} \to ${2:\infty}} 
+\limsup_{${1:n} \to ${2:\infty}}
 endsnippet
 
 snippet prod "product" w
-\prod_{${1:n=${2:1}}}^{${3:\infty}} ${4:${VISUAL}} $0
+\prod\limits_{${1:n=${2:1}}}^{${3:\infty}} ${4:${VISUAL}} $0
 endsnippet
 
 snippet part "d/dx" w
@@ -309,34 +314,39 @@ snippet rd "to the ... power" iA
 ^{($1)}$0
 endsnippet
 
+context "math()"
 snippet __ "subscript" iA
 _{$1}$0
 endsnippet
 
+context "math()"
 snippet ooo "\infty" iA
 \infty
 endsnippet
 
+context "math()"
 snippet rij "mrij" i
 (${1:x}_${2:n})_{${3:$2}\\in${4:\\N}}$0
 endsnippet
 
+context "math()"
 snippet <= "leq" iA
-\le 
+\le
 endsnippet
 
+context "math()"
 snippet >= "geq" iA
-\ge 
+\ge
 endsnippet
 
 context "math()"
 snippet EE "geq" iA
-\exists 
+\exists
 endsnippet
 
 context "math()"
 snippet AA "forall" iA
-\forall 
+\forall
 endsnippet
 
 context "math()"
@@ -380,6 +390,7 @@ snippet xmm "x" iA
 x_{m}
 endsnippet
 
+context "math()"
 snippet R0+ "R0+" iA
 \\R_0^+
 endsnippet
@@ -407,6 +418,11 @@ $0
 endsnippet
 
 context "math()"
+snippet mbb "mathbb" iA
+\mathbb{$1}$0
+endsnippet
+
+context "math()"
 snippet mcal "mathcal" iA
 \mathcal{$1}$0
 endsnippet
@@ -417,17 +433,17 @@ endsnippet
 
 context "math()"
 snippet nabl "nabla" iA
-\nabla 
+\nabla
 endsnippet
 
 context "math()"
 snippet xx "cross" iA
-\times 
+\times
 endsnippet
 
 priority 100
 snippet ** "cdot" iA
-\cdot 
+\cdot
 endsnippet
 
 context "math()"
@@ -437,19 +453,19 @@ endsnippet
 
 priority 100
 context "math()"
-snippet '(?<!\\)(sin|cos|arccot|cot|csc|ln|log|exp|star|perp)' "ln" rwA
+snippet '(?<!\\)(sin|cos|tan|arccot|cot|csc|ln|log|exp|star|perp)' "ln" rwA
 \\`!p snip.rv = match.group(1)`
 endsnippet
 
 priority 300
 context "math()"
-snippet dint "integral" wA
+snippet dint "def integral" wA
 \int_{${1:-\infty}}^{${2:\infty}} ${3:${VISUAL}} $0
 endsnippet
 
 priority 200
 context "math()"
-snippet '(?<!\\)(arcsin|arccos|arctan|arccot|arccsc|arcsec|pi|zeta|int)' "ln" rwA
+snippet '(?<!\\)(arcsin|arccos|arctan|arccot|arccsc|arcsec|pi|zeta)' "ln" rwA
 \\`!p snip.rv = match.group(1)`
 endsnippet
 
@@ -457,7 +473,7 @@ endsnippet
 priority 100
 context "math()"
 snippet -> "to" iA
-\to 
+\to
 endsnippet
 
 priority 200
@@ -468,7 +484,7 @@ endsnippet
 
 context "math()"
 snippet !> "mapsto" iA
-\mapsto 
+\mapsto
 endsnippet
 
 context "math()"
@@ -496,7 +512,7 @@ endsnippet
 
 
 snippet ~~ "~" iA
-\sim 
+\sim
 endsnippet
 
 context "math()"
@@ -505,66 +521,77 @@ snippet set "set" wA
 endsnippet
 
 snippet || "mid" iA
- \mid 
+ \mid
 endsnippet
 
 
 context "math()"
 snippet cc "subset" Ai
-\subset 
+\subset
 endsnippet
 
 snippet notin "not in " iA
-\not\in 
+\not\in
 endsnippet
 
 context "math()"
 snippet inn "in " iA
-\in 
+\in
 endsnippet
 
+context "math()"
 snippet NN "n" iA
 \N
 endsnippet
 
+context "math()"
 snippet Nn "cap" iA
-\cap 
+\cap
 endsnippet
 
+context "math()"
 snippet UU "cup" iA
-\cup 
+\cup
 endsnippet
 
+context "math()"
 snippet uuu "bigcup" iA
 \bigcup_{${1:i \in ${2: I}}} $0
 endsnippet
 
+context "math()"
 snippet nnn "bigcap" iA
 \bigcap_{${1:i \in ${2: I}}} $0
 endsnippet
 
+context "math()"
 snippet OO "emptyset" iA
 \O
 endsnippet
 
+context "math()"
 snippet RR "real" iA
 \R
 endsnippet
 
+context "math()"
 snippet QQ "Q" iA
 \Q
 endsnippet
 
+context "math()"
 snippet ZZ "Z" iA
 \Z
 endsnippet
 
+context "math()"
 snippet <! "normal" iA
-\triangleleft 
+\triangleleft
 endsnippet
 
+context "math()"
 snippet <> "hokje" iA
-\diamond 
+\diamond
 endsnippet
 
 
@@ -624,17 +651,25 @@ snippet "([a-zA-Z])hat" "hat" riA
 \hat{`!p snip.rv=match.group(1)`}
 endsnippet
 
-snippet letw "let omega" iA
-Let $\Omega \subset \C$ be open.
+context "math()"
+snippet veps "varepsilon" iA
+\varepsilon
 endsnippet
 
+context "math()"
+snippet vnot "varnothing" iA
+\varnothing
+endsnippet
 
+context "math()"
 snippet HH "H" iA
 \mathbb{H}
 endsnippet
 
+context "math()"
 snippet DD "D" iA
 \mathbb{D}
 endsnippet
+
 
 # vim:ft=snippets
