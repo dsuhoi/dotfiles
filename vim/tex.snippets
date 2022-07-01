@@ -265,24 +265,53 @@ snippet conj "conjugate" iA
 \overline{$1}$0
 endsnippet
 
+
 snippet sum "sum" w
-\sum_{n=${1:1}}^{${2:\infty}} ${3:a_n z^n}
+\sum\limits_{n=${1:1}}^{${2:\infty}} ${3:a_n}
 endsnippet
 
 snippet taylor "taylor" w
-\sum_{${1:k}=${2:0}}^{${3:\infty}} ${4:c_$1} (x-a)^$1 $0
+\sum\limits_{${1:k}=${2:0}}^{${3:\infty}} ${4:c_$1} (x-a)^$1 $0
 endsnippet
 
 snippet lim "limit" w
 \lim_{${1:n} \to ${2:\infty}}
 endsnippet
 
+snippet limm "limit + L" w
+\lim\limits_{${1:n} \to ${2:\infty}}
+endsnippet
+
 snippet limsup "limsup" w
-\limsup_{${1:n} \to ${2:\infty}}
+\limsup\limits_{${1:n} \to ${2:\infty}}
+endsnippet
+
+snippet sup "supremum" w
+\sup_{${1:i \in ${2:I}}} $0
+endsnippet
+
+snippet supp "supremum + L" w
+\sup\limits_{${1:i \in ${2:I}}} $0
+endsnippet
+
+snippet inf "infimum" w
+\inf_{${1:i \in ${2:I}}} $0
+endsnippet
+
+snippet inff "infimum + L" w
+\inf\limits_{${1:i \in ${2:I}}} $0
 endsnippet
 
 snippet prod "product" w
 \prod\limits_{${1:n=${2:1}}}^{${3:\infty}} ${4:${VISUAL}} $0
+endsnippet
+
+snippet int "integral" w
+\int ${1:f(x)} \; ${2:dx} $0
+endsnippet
+
+snippet dint "def integral" w
+\int\limits_{${1:-\infty}}^{${2:\infty}} ${3:f(x)} $0
 endsnippet
 
 snippet part "d/dx" w
@@ -457,11 +486,6 @@ snippet '(?<!\\)(sin|cos|tan|arccot|cot|csc|ln|log|exp|star|perp)' "ln" rwA
 \\`!p snip.rv = match.group(1)`
 endsnippet
 
-priority 300
-context "math()"
-snippet dint "def integral" wA
-\int_{${1:-\infty}}^{${2:\infty}} ${3:${VISUAL}} $0
-endsnippet
 
 priority 200
 context "math()"
@@ -556,12 +580,12 @@ endsnippet
 
 context "math()"
 snippet uuu "bigcup" iA
-\bigcup_{${1:i \in ${2: I}}} $0
+\bigcup_{${1:i \in ${2:I}}} $0
 endsnippet
 
 context "math()"
 snippet nnn "bigcap" iA
-\bigcap_{${1:i \in ${2: I}}} $0
+\bigcap_{${1:i \in ${2:I}}} $0
 endsnippet
 
 context "math()"
