@@ -4,9 +4,9 @@
     "height": 30, // Waybar height (to be removed for auto height)
     // "width": 1280, // Waybar width
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "sway/window"],
+    "modules-left": ["sway/workspaces", "sway/mode"], // "sway/window"],
     "modules-center": ["custom/cmus"],
-    "modules-right": ["custom/weather", "pulseaudio", "memory", "custom/pacman", "temperature", "network", "sway/language", "battery", "battery#bat2", "clock", "tray"],
+    "modules-right": ["custom/weather", "pulseaudio", "memory", "temperature", "custom/pacman", "network", "sway/language", "battery", "battery#bat2", "clock", "tray"],
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
@@ -52,10 +52,10 @@
             "critical": 15
         },
         "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
+        "format-charging": "{capacity}%",
         "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",
-        // "format-good": "", // An empty format will hide the module
+        // "format-good": "",
         // "format-full": "",
         "format-icons": ["", "", "", "", ""]
     },
@@ -63,21 +63,19 @@
         "bat": "BAT2"
     },
     "network": {
-        // "interface": "wlp2*", // (Optional) To force the use of this interface
+        // "interface": "wlp2*",
         "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-        "format-linked": "{ifname} (No IP) ",
+        "format-ethernet": "{ifname}: {ipaddr}/{cidr}",
+        "format-linked": "{ifname} (No IP)",
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
     "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
+        // "scroll-step": 1,
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-bluetooth-muted": " {icon}",
+        "format-muted": " ",
         "format-icons": {
             "headphone": "",
             "hands-free": "",
@@ -87,23 +85,23 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pavucontrol"
+        "on-click": ""
     },
     "custom/cmus": {
         "format": "♪ {}",
         "max-length": 35,
         "interval": 10,
-        "exec": "cmus-remote -C \"format_print '%a - %t'\"", // artist - title
+        "exec": "cmus-remote -C \"format_print '%a - %t'\"",
         "exec-if": "pgrep cmus",
-        "on-click": "cmus-remote -u",                        //toggle pause
-        "escape": true                                       //handle markup entities
+        "on-click": "cmus-remote -u",
+        "escape": true
     },
     "custom/pacman": {
         "format": "{}",
-        "interval": 3600,                     // every hour
-        "exec": "echo \"P:$(checkupdates | wc -l) Y:$(yay -Qum | wc -l)\"",       // # of updates
-        "exec-if": "exit 0",                  // always run; consider advanced run conditions
-        /* "on-click": "termite -e 'sudo pacman -Syu'; pkill -SIGRTMIN+8 waybar", // update system */
+        "interval": 3600,
+        "exec": "echo \"P:$(checkupdates | wc -l) Y:$(yay -Qum | wc -l)\"",
+        "exec-if": "exit 0",
+        /* "on-click": "termite -e 'sudo pacman -Syu'; pkill -SIGRTMIN+8 waybar",  */
         "signal": 8
     },
     /* "custom/weather": { */

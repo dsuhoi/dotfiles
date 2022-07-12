@@ -3,9 +3,9 @@
 while [ -n "$1" ]
 do
 case "$1" in
--b) sudo pacman -S --needed vim rxvt-unicode alacritty pcmanfm compton xf86-video-intel htop dosfstools ntfs-3g ;;
--e) sudo pacman -S --needed net-tools firefox libreoffice-fresh libreoffice-fresh-ru gimp unzip unrar p7zip cmus pulseaudio pulseaudio-alsa alsa-utils links gnome-calculator neofetch fzf bat zoxide udiskie;;
--c) sudo pacman -S --needed git gcc python python-pip jdk-openjdk ranger ;;
+-b) sudo pacman -S --needed vim rxvt-unicode alacritty pcmanfm compton htop dosfstools ntfs-3g ;;
+-e) sudo pacman -S --needed net-tools firefox libreoffice-fresh libreoffice-fresh-ru gimp unzip unrar p7zip cmus pulseaudio pulseaudio-alsa alsa-utils gnome-calculator neofetch fzf bat zoxide udiskie;;
+-c) sudo pacman -S --needed git gcc clang python python-pip ranger ;;
 -y)
    sudo pacman -S --needed base-devel git
    cd /tmp
@@ -18,8 +18,8 @@ case "$1" in
     curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh
     cp .bashrc ~/.bashrc ;;
 -gui)
-   sudo pacman -S --needed sway mako rofi feh grim slurp wl-clipboard mutt pacman-contrib arc-gtk-theme jq ttf-freefont ttf-linux-libertine ttf-hack terminus-font ttf-font-awesome gsettings-desktop-schemas noto-fonts-emoji
-   yay -S numix-circle-arc-icons-git ripgrep;;
+   sudo pacman -S --needed sway mako rofi wofi feh grim slurp wl-clipboard mutt pacman-contrib arc-gtk-theme jq ttf-freefont ttf-linux-libertine ttf-hack terminus-font ttf-font-awesome gsettings-desktop-schemas noto-fonts-emoji
+   yay -S numix-circle-arc-icons-git ripgrep ;;
 -h)
    echo "-b   --Base installation"
    echo "-e   --Extra installation"

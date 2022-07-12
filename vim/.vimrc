@@ -74,7 +74,7 @@ colorscheme badwolf " Change BG color in function
 " Plugin settings
 "-----------------
 " Coc.nvim
-let g:coc_global_extensions = ['coc-json', 'coc-clangd', 'coc-python', 'coc-snippets', 'coc-pairs']
+let g:coc_global_extensions = ['coc-clangd', 'coc-python', 'coc-diagnostic', 'coc-snippets', 'coc-pairs']
 let b:coc_diagnostic_disable = 1
 let b:coc_diagnostic_info={'information': 0, 'hint': 0, 'lnums': [0, 0, 0, 0], 'warning': 0, 'error': 0}
 nmap <silent> gd <Plug>(coc-definition)
@@ -112,6 +112,7 @@ endfunction
 let g:coc_snippet_next = '<tab>'
 let g:coc_snippet_prev = '<s-tab>'
 
+" let g:coc_user_config = {}
 
 " NERDTree
 nnoremap <leader>n :NERDTreeFocus<CR>
@@ -209,17 +210,21 @@ let g:ale_c_clangformat_style_option = '{
     \ "AlignTrailingComments": "true",
     \}'
 
+let g:ale_c_cc_options = '-std=c17 -Wall'
+let g:ale_cpp_cc_options = '-std=c++20 -Wall'
+
 let g:ale_fix_on_save = 1
 let b:ale_warn_about_trailing_whitespace = 0
-
+" let g:ale_floating_preview = 1
+" let g:ale_cursor_detail = 1
+" let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰', '│', '─']
+" let g:ale_hover_to_floating_preview = 1
+" let g:ale_detail_to_floating_preview = 1
 highlight ALEErrorSign ctermfg=9 guibg=NONE ctermbg=NONE
 highlight ALEWarningSign ctermfg=11 guibg=NONE ctermbg=NONE
 highlight clear ALESignColumnWithErrors
 highlight clear  ALESignColumnWithoutErrors
 nmap <Leader>z :ALEToggle<CR>
-
-let g:flake8_max_line_length=120
-let g:flake8_ignore="E203, W503, W504, E731"
 
 
 " LaTex
