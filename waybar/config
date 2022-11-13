@@ -10,6 +10,9 @@
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
+    "sway/language": {
+        "format-alt": "{}",
+    },
     "idle_inhibitor": {
         "format": "{icon}",
         "format-icons": {
@@ -97,11 +100,11 @@
         "escape": true
     },
     "custom/pacman": {
-        "format": "{}",
+        "format-alt": "{}",
         "interval": 3600,
         "exec": "echo \"P:$(checkupdates | wc -l) Y:$(yay -Qum | wc -l)\"",
-        "exec-if": "exit 0",
-        /* "on-click": "termite -e 'sudo pacman -Syu'; pkill -SIGRTMIN+8 waybar",  */
+        /* "exec-if": "exit 0",
+        "on-click": "termite -e 'sudo pacman -Syu'; pkill -SIGRTMIN+8 waybar",*/
         "signal": 8
     },
     /* "custom/weather": { */
@@ -109,7 +112,7 @@
     /*     "interval": 3600 */
     /* }, */
     "custom/weather": {
-        "format": "{}",
+        "format-alt": "{}",
         "tooltip": true,
         "interval": 3600,
         "exec": "python ~/.config/waybar/scripts/waybar-wttr.py",

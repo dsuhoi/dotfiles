@@ -19,14 +19,14 @@ window#waybar.hidden {
   opacity: 0.2;
 }
 
-/*
-window#waybar.empty {
-    background-color: transparent;
+tooltip {
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(100, 114, 125, 0.8);
 }
-window#waybar.solo {
-    background-color: #FFFFFF;
+
+tooltip label {
+  color: @theme_fg_color;
 }
-*/
 
 window#waybar.termite {
   background-color: #3f3f3f;
@@ -35,6 +35,10 @@ window#waybar.termite {
 window#waybar.chromium {
   background-color: #000000;
   border: none;
+}
+
+button:hover {
+  background-color: rgba(0, 0, 0, 0);
 }
 
 #workspaces button {
@@ -78,13 +82,18 @@ window#waybar.chromium {
 #mode,
 #idle_inhibitor,
 #window,
+#language,
 #custom-cmus,
 #custom-pacman,
-#custom-weather,
+#custom-weather{
+  margin: 0 4px;
+  padding: 0 2px 0 2px;
+  color: inherit;
+}
+
 #workspaces {
   margin: 0 4px;
 }
-
 /* If workspaces is the leftmost module, omit left margin */
 .modules-left > widget:first-child > #workspaces {
   margin-left: 0;
@@ -199,7 +208,7 @@ label:focus {
 
 #language {
   border-bottom: 3px solid #00b093;
-  /*color: #740864;*/
+  /* color: white; */
   padding: 0 5px;
   margin: 0 5px;
   min-width: 16px;
