@@ -17,10 +17,10 @@
 - [Mutt](mutt/) (email manager)
 
 #### Outdated configurations
-- [i3-gaps](i3/config) (and [xorg](bash/.xinitrc))
-- [Polybar](polybar/)
-- [urxvt](urxvt/.Xdefaults)
-- [Emacs](emacs/.emacs)
+- [i3-gaps](legacy/i3/config) (and [xorg](bash/.xinitrc))
+- [Polybar](legacy/polybar/)
+- [urxvt](legacy/urxvt/.Xdefaults)
+- [Emacs](legacy/emacs/.emacs)
 
 ### About me
 - [Telegram](https://t.me/dsuh0i)
