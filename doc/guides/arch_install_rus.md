@@ -1,8 +1,8 @@
-# Installing Arch Linux
+# Установка Arch Linux
 
-## Setting up a wifi network with LiveCD (without wifi menu)
+## Настройка wifi сети при LiveCD (без wifi-menu)
 ### wpa_supplicant
-Output of available network interfaces, view wifi networks and connect
+Вывод доступных сетевых интерфейсов, просмотр wifi сетей и подключение
 ```sh
 ip link set <wlan0> up # or ifconfig <wlan0> up
 iw dev <wlan0> scan
@@ -17,33 +17,33 @@ iwctl
 [iwd]$ iwctl --passphrase <password> station <wlan0> connect <ssid>
 ```
 
-## Disk partitioning and partitioning
-Markup via `cfdisk`
-- (+-50Mb) UEFI (EFI System) (for GPT) [/dev/efi]
-- (300Mb) boot (Linux FS) (bootable flag for DOS) [/dev/boot]
-- (1/2 of RAM) SWAP (Linux swap) [/dev/swap]
-- (50Gb) root partition (Linux root/FS) [/dev/root]
-- (other) LVM (Linux LVM/FS) [/dev/lvm]
+## Разметка диска и создание разделов
+Разметка через `cfdisk`
+- (+-50Mb) на UEFI (EFI System) (для GPT) [/dev/efi]
+- (300Mb) на boot (Linux FS) (bootable flag для DOS) [/dev/boot]
+- (1/2 от RAM) на SWAP (Linux swap) [/dev/swap]
+- (50Gb) на корневой раздел (Linux root/FS) [/dev/root]
+- (остальное) на LVM (Linux LVM/FS) [/dev/lvm]
 
-Formating partitions
+Форматирование разделов
 ```sh
 mkfs.fat -F32 </dev/efi>
 mkfs.ext2 </dev/boot> -L boot
 mkfs.ext4 </dev/root> -L root
 mkswap </dev/swap> -L swap
 ```
-Setting up a logical partitions
+Настройка логический разделов
 ```sh
 pvcreate </dev/lvm>
 vgcreate <vg0> </dev/lvm>
 lvcreate -l 100%FREE -n <home> <vg0>
 ```
-Then we format the received partitions
+Потом форматируем полученные разделы
 ```sh
 mkfs.ext4 </dev/vg0/home>
 ```
 
-## Mounting the system
+## Монтирование системы
 ```sh
 swapon </dev/swap>
 mount </dev/root> /mnt
@@ -52,54 +52,54 @@ mount </dev/boot> /mnt/boot
 mount </dev/vg0/home> /mnt/home
 ```
 
-## System installation
-Before installation, it may be useful to specify a mirror in file `/etc/pacman.d/mirrorlist`
+## Установка системы
+Перед установкой может быть полезно указать зеркало в файле `/etc/pacman.d/mirrorlist`
 ```sh
 Server = https://mirror.yandex.ru/archlinux/$repo/os/$arch
 ```
-Installing basic packages
+Установка основных пакетов
 ```sh
 pacstrap -i /mnt bas base-devel linux linux-firmware linux-headers lvm2 dhcpcd netctl dialog wget git vim nano grub efibootmgr wpa_supplicant
 ```
-Creating a `fstab` file
+Создание `fstab` файла
 ```sh
 genfstab -U -p /mnt >> /mnt/etc/fstab
 ```
 
-## System setting
+## Настройка системы
 ```sh
 arch-chroot /mnt /bin/bash
 ```
 
-### Locale setting
+### Настройка локали
 ```sh
 vim /etc/locale.gen
 locale-gen
 ```
 
-Add `lvm2` and `keymap` to  `/etc/mkinitcpio.conf` on line
+Добавить `lvm2` и `keymap` в  `/etc/mkinitcpio.conf` на строке
 ```sh
 HOOKS=( ... block lvm2 ... keyboard keymap fsck)
 ```
-and create a boot RAM disk
+и создать загрузочный RAM диск
 ```sh
 mkinitcpio -p linux
 ```
 
-### Grub installation
-Mounting a partition with EFI
+### Установка grub
+Монтирование раздела с EFI
 ```sh
 mkdir /boot/efi
 mount </dev/efi> /boot/efi
 ```
-Installing `grub`
+Установка `grub`
 ```sh
 grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=grub
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
-After setting up the password via `passwd`, we log out of root.
+После настройки пароля через `passwd` выходим из root.
 
-## Unmounting
+## Размонтирование
 ```sh
 umount /mnt/boot/efi
 umount /mnt/boot
@@ -107,27 +107,27 @@ umount /mnt/home
 umount /mnt
 ```
 
-## Setting up the user's environment
-### Setting the time, date and fonts
+## Настройка окружения пользователя
+### Настройка времени, даты и шрифтов
 ```sh
 timedatectl set-ntp true
 timedatectl set-timezone Europe/Moscow
 localectl set-keymap ru
 setfont cyr-sun16
 ```
-### Setting up pacman
+### Настройка pacman
 Раскомментировать доп. репозитории
 ```sh
 #[multilib]
 #Include = /etc/pacman.d/mirrorlist
 ```
-### Setting up user
+### Настройка пользователя
 ```sh
 useradd -m -g users -G audio,lp,optical,power,scanner,storage,video,wheel -s /bin/bash <user_name>
 passwd <user_name>
 # chfn <user_name>
 ```
-Uncomment this line in `/etc/sudoers`
+В `/etc/sudoers` раскомментировать строку
 ```sh
 # %wheel ALL=(ALL) ALL
 ```
