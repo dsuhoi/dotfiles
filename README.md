@@ -1,25 +1,25 @@
 # dotfiles
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/dsuhoi/dotfiles)
+![GitHub repo size](https://img.shields.io/github/repo-size/dsuhoi/dotfiles)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/dsuhoi/dotfiles/blob/main/LICENSE)
 
 > My config files.
 >
 ![image](doc/desktop.png)
 
-### Конфигурации
-- Гайд по установке ArchLinux
-- Скрипт по установке основных пакетов
-- Sway
-- Waybar
-- Alacritty
-- Bash (oh-my-Bash)
-- Vim
-- Mutt (почта)
+### Configurations
+- ArchLinux Installation [Guide](arch_install.md)
+- [Script](install.sh) for installing basic packages
+- [Sway](sway/config)
+- [Waybar](waybar/)
+- [Alacritty](alacritty/alacritty.yml)
+- [Bash](.bashrc) (oh-my-Bash)
+- [Vim](vim/)
+- [Mutt](mutt/) (email)
 
-#### Неактульные конфигурации
-- i3-gaps (и xorg)
-- Polybar
-- urxvt
+#### Outdated configurations
+- [i3-gaps](i3/config) (and [xorg](.xinitrc))
+- [Polybar](polybar/)
+- [urxvt](urxvt/.Xdefaults)
 - Emacs
 
 ### About me
