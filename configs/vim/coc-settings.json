@@ -1,12 +1,13 @@
 {
+    "suggest.noselect": true,
     "diagnostic.enable": false,
     "clangd.disableDiagnostics": false,
-    //"coc.preferences.formatOnType": true,
-    //"coc.preferences.formatOnTypeFiletypes": [
+    // "python.jediPath": "/usr/lib/python3.10/site-packages",
+    // "coc.preferences.formatOnType": true,
+    // "coc.preferences.formatOnTypeFiletypes": [
     //     "python"
     // ],
     //"python.venvPath": "~/.env",
-    //"python.jediPath": "/usr/lib/python3.10/site-packages",
     //"python.linting.enabled": true,
     ////"python.linting.flake8Enabled": true,
     //"diagnostic.warningSign": "--",

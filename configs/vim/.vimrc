@@ -93,24 +93,25 @@ endfunction
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-inoremap <silent><expr> <C-j>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<C-j>" :
-      \ coc#refresh()
-inoremap <expr><C-k> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-inoremap <silent><expr> <TAB>
-      \ pumvisible() && coc#expandable() ? coc#_select_confirm() :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+inoremap <silent><expr> <tab>
+    \ coc#pum#visible() && coc#expandable() ? coc#_select_confirm():
+    \ <SID>check_back_space() ? "\<tab>" :
+    \ coc#refresh()
+
+inoremap <silent><expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
+inoremap <silent><expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
+
 let g:coc_snippet_next = '<tab>'
 let g:coc_snippet_prev = '<s-tab>'
+
+highlight CocMenuSel ctermbg=4
 
 " let g:coc_user_config = {}
 
@@ -166,7 +167,6 @@ nnoremap ,p :Stop<CR>
 nnoremap ,f :Finish<CR>
 nnoremap ,k :Evaluate<CR>
 nnoremap ,r :Run<CR>
-
 
 " Tagbar
 nnoremap <C-t> :TagbarToggle<CR>
