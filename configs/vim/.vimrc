@@ -197,8 +197,12 @@ let g:ale_fixers = {
     \ 'c':      ['clang-format'],
     \ 'cpp':    ['clang-format'],
     \ 'python': ['black', 'isort'],
-    \ 'json':   ['prettier']
+    \ 'json':   ['prettier'],
+    \ 'css':    ['prettier'],
+    \ 'html':   ['prettier'],
     \}
+
+let g:ale_javascript_prettier_options = '--tab-width 4'
 
 let g:ale_c_clangformat_style_option = '{
     \ "BasedOnStyle": "Google",
@@ -211,21 +215,16 @@ let g:ale_c_clangformat_style_option = '{
     \}'
 
 let g:ale_c_cc_options = '-std=c17 -Wall'
-let g:ale_cpp_cc_options = '-std=c++20 -Wall'
+let g:ale_cpp_cc_options = '-std=c++2b -Wall'
 
 let g:ale_fix_on_save = 1
 let b:ale_warn_about_trailing_whitespace = 0
-" let g:ale_floating_preview = 1
-" let g:ale_cursor_detail = 1
-" let g:ale_floating_window_border = ['│', '─', '╭', '╮', '╯', '╰', '│', '─']
-" let g:ale_hover_to_floating_preview = 1
-" let g:ale_detail_to_floating_preview = 1
+
 highlight ALEErrorSign ctermfg=9 guibg=NONE ctermbg=NONE
 highlight ALEWarningSign ctermfg=11 guibg=NONE ctermbg=NONE
 highlight clear ALESignColumnWithErrors
 highlight clear  ALESignColumnWithoutErrors
 nmap <Leader>z :ALEToggle<CR>
-
 
 " LaTex
 let g:tex_flavor='latex'
