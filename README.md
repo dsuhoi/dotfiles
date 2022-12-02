@@ -17,7 +17,7 @@
 - [Mutt](configs/mutt/) (email manager)
 
 #### Outdated configurations
-- [i3-gaps](legacy/i3/config) (and [xorg](bash/.xinitrc))
+- [i3-gaps](legacy/i3/config) (and [xorg](configs/bash/.xinitrc))
 - [Polybar](legacy/polybar/)
 - [urxvt](legacy/urxvt/.Xdefaults)
 - [Emacs](legacy/emacs/.emacs)
