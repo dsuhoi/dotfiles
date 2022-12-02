@@ -21,7 +21,3 @@
 - [Polybar](legacy/polybar/)
 - [urxvt](legacy/urxvt/.Xdefaults)
 - [Emacs](legacy/emacs/.emacs)
-
-### About me
-- [Telegram](https://t.me/dsuh0i)
-- [Email](mailto:dsuh0i.h8@gmail.com)
