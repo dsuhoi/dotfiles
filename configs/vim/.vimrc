@@ -107,7 +107,7 @@ inoremap <silent><expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
 let g:coc_snippet_next = '<tab>'
 let g:coc_snippet_prev = '<s-tab>'
 
-highlight CocMenuSel ctermbg=4
+" highlight CocMenuSel ctermbg=4
 
 " let g:coc_user_config = {}
 
@@ -216,8 +216,8 @@ let g:ale_cpp_cc_options = '-std=c++2b -Wall'
 let g:ale_fix_on_save = 1
 let b:ale_warn_about_trailing_whitespace = 0
 
-highlight ALEErrorSign ctermfg=9 guibg=NONE ctermbg=NONE
-highlight ALEWarningSign ctermfg=11 guibg=NONE ctermbg=NONE
+highlight ALEErrorSign ctermfg=9 ctermbg=NONE
+highlight ALEWarningSign ctermfg=11 ctermbg=NONE
 highlight clear ALESignColumnWithErrors
 highlight clear  ALESignColumnWithoutErrors
 nmap <Leader>z :ALEToggle<CR>
