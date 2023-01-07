@@ -116,7 +116,7 @@ localectl set-keymap ru
 setfont cyr-sun16
 ```
 ### Setting up pacman
-Раскомментировать доп. репозитории
+Uncomment additional repositories
 ```sh
 #[multilib]
 #Include = /etc/pacman.d/mirrorlist
