@@ -29,7 +29,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/tagbar'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'sheerun/vim-polyglot'
-Plug 'sjl/badwolf'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-fugitive'
 call plug#end()
@@ -65,11 +64,8 @@ set hidden
 
 " color scheme
 "-----------------
-colorscheme badwolf " Change BG color in function
-" highlight Normal guibg=NONE ctermbg=NONE
-" highlight EndOfBuffer guibg=NONE ctermbg=NONE
-" highlight LineNr guibg=NONE ctermbg=NONE
-" highlight ErrorMsg guibg=NONE ctermbg=NONE
+colorscheme theme
+
 
 " Plugin settings
 "-----------------
