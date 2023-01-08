@@ -7,7 +7,6 @@ endif
 set background=dark
 let colors_name = "theme"
 
-
 " Vim >= 7.0 specific colors
 if version >= 700
   hi CursorLine    ctermbg=234 cterm=NONE
@@ -49,3 +48,6 @@ hi Todo            ctermfg=6 ctermbg=239 cterm=bold
 hi Type            ctermfg=83
 hi Typedef         ctermfg=83 cterm=bold
 hi Operator        ctermfg=8
+
+" EasyMotion
+hi EasyMotionTarget ctermfg=39 ctermbg=None cterm=bold

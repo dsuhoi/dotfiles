@@ -182,6 +182,7 @@ let g:fzf_layout = { 'down': '30%' }
 let g:ale_enabled = 0
 let g:ale_disable_lsp = 1
 let g:ale_change_sign_column_color = 1
+let g:ale_virtualtext_cursor = 0
 let g:ale_linters = {
     \ 'c':      ['ccls', 'clang'],
     \ 'cpp':    ['clang'],
