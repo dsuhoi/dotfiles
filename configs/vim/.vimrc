@@ -34,7 +34,8 @@ Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " Default Indentation
-set autoindent
+" set autoindent
+set smarttab
 set expandtab       " expand tab to space
 set smartindent     " indent when
 set tabstop=4       " tab width
@@ -70,9 +71,10 @@ colorscheme theme
 " Plugin settings
 "-----------------
 " Coc.nvim
-let g:coc_global_extensions = ['coc-clangd', 'coc-python', 'coc-diagnostic', 'coc-snippets', 'coc-pairs']
+let g:coc_global_extensions = ['coc-clangd', 'coc-pyright', 'coc-tsserver', 'coc-json', 'coc-diagnostic', 'coc-snippets', 'coc-pairs']
 let b:coc_diagnostic_disable = 1
 let b:coc_diagnostic_info={'information': 0, 'hint': 0, 'lnums': [0, 0, 0, 0], 'warning': 0, 'error': 0}
+autocmd FileType python let b:coc_root_patterns = ['.git', 'env','.env', 'venv', '.venv', 'setup.cfg', 'setup.py']
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> gn <Plug>(coc-rename)
@@ -108,8 +110,11 @@ let g:coc_snippet_next = '<tab>'
 let g:coc_snippet_prev = '<s-tab>'
 
 " highlight CocMenuSel ctermbg=4
+let g:coc_user_config = {
+    \ 'suggest.noselect': v:true, 'diagnostic.enable': v:false,
+    \ 'diagnostic.displayByAle': v:true, 'clangd.disableDiagnostics': v:false, 'inlayHint.enable': v:false
+    \}
 
-" let g:coc_user_config = {}
 
 " NERDTree
 nnoremap <leader>n :NERDTreeFocus<CR>
@@ -172,6 +177,7 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 nmap <Leader>c <Plug>(easymotion-overwin-f)
 nmap <Leader>L <Plug>(easymotion-overwin-line)
 
+
 " FZF
 nnoremap <silent> <Leader>f :FZF<CR>
 nnoremap <silent> <Leader>r :Rg<CR>
@@ -188,12 +194,15 @@ let g:ale_linters = {
     \ 'cpp':    ['clang'],
     \ 'python': ['flake8'],
     \ 'vim':    ['vint'],
+    \ 'javascript': ['tsserver',]
     \}
 let g:ale_fixers = {
     \ '*':      ['remove_trailing_lines', 'trim_whitespace'],
     \ 'c':      ['clang-format'],
     \ 'cpp':    ['clang-format'],
     \ 'python': ['black', 'isort'],
+    \ 'javascript': ['prettier', 'eslint'],
+    \ 'typescript': ['prettier'],
     \ 'json':   ['prettier'],
     \ 'css':    ['prettier'],
     \ 'html':   ['prettier'],

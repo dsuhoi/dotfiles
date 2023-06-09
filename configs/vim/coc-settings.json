@@ -1,7 +1,9 @@
 {
     "suggest.noselect": true,
     "diagnostic.enable": false,
+    "diagnostic.displayByAle": true,
     "clangd.disableDiagnostics": false,
+    "inlayHint.enable": false,
     // "python.jediPath": "/usr/lib/python3.10/site-packages",
     // "coc.preferences.formatOnType": true,
     // "coc.preferences.formatOnTypeFiletypes": [
@@ -50,34 +52,37 @@
     //        }
     //    }
     //},
-    "diagnostic-languageserver.formatters": {
-        "black": {
-            "command": "black",
-            "args": [
-                "-q",
-                "-"
-            ]
-        },
-        "isort": {
-            "command": "isort",
-            "args": [
-                "-q",
-                "-"
-            ]
-        }
-    },
-    "diagnostic-languageserver.filetypes": {
-        "vim": "vint",
-        "c": "clang",
-        "cpp": "clang",
-        "python": "flake8"
-    },
-    "diagnostic-languageserver.formatFiletypes": {
-        "python": [
-            "black",
-            "isort"
-        ],
-        "c": "clang-format",
-        "cpp": "clang-format"
-    }
+    "python.formatting.provider": "black",
+    "python.linting.flake8Enabled": true,
+
+    // "diagnostic-languageserver.formatters": {
+    //     "black": {
+    //         "command": "black",
+    //         "args": [
+    //             "-q",
+    //             "-"
+    //         ]
+    //     },
+    //     "isort": {
+    //         "command": "isort",
+    //         "args": [
+    //             "-q",
+    //             "-"
+    //         ]
+    //     }
+    // },
+    // "diagnostic-languageserver.filetypes": {
+    //     "vim": "vint",
+    //     "c": "clang",
+    //     "cpp": "clang",
+    //     "python": "flake8"
+    // },
+    // "diagnostic-languageserver.formatFiletypes": {
+    //     "python": [
+    //         "black",
+    //         "isort"
+    //     ],
+    //     "c": "clang-format",
+    //     "cpp": "clang-format"
+    // }
 }
