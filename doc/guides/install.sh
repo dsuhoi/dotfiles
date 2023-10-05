@@ -9,7 +9,7 @@ case "$1" in
 -y)
    sudo pacman -S --needed base-devel git
    cd /tmp
-   git clone https://aur.archlinux.org/yay.git
+   git clone https://aur.archlinux.org/yay-bin.git
    cd yay
    makepkg -si
    cd ..
