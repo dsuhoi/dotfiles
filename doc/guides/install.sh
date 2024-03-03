@@ -4,7 +4,7 @@ while [ -n "$1" ]
 do
 case "$1" in
 -b) sudo pacman -S --needed vim rxvt-unicode alacritty compton htop dosfstools net-tools pulseaudio pulseaudio-alsa alsa-utils;;
--e) sudo pacman -S --needed firefox libreoffice-fresh libreoffice-fresh-ru gimp cmus mutt  gnome-calculator ranger;;
+-e) sudo pacman -S --needed firefox libreoffice-fresh libreoffice-fresh-ru gimp cmus mutt  gnome-calculator polkit polkit-gnome ranger;;
 -c) sudo pacman -S --needed git gcc clang python python-pip;;
 -y)
    sudo pacman -S --needed base-devel git
