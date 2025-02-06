@@ -9,7 +9,7 @@
 ### Configurations
 - ArchLinux Installation [Guide](doc/guides/arch_install.md)
 - [Script](doc/guides/install.sh) for installing basic packages
-- [Sway](configs/sway/config)
+- [Hyprland](config/hypr/hyprland.conf)
 - [Waybar](configs/waybar/)
 - [Alacritty](configs/alacritty/alacritty.yml)
 - [Bash](configs/bash/.bashrc) (+ [oh-my-bash](https://github.com/ohmybash/oh-my-bash))
@@ -17,6 +17,7 @@
 - [Mutt](configs/mutt/) (email manager)
 
 #### Outdated configurations
+- [Sway](legacy/sway/config)
 - [i3-gaps](legacy/i3/config) (and [xorg](configs/bash/.xinitrc))
 - [Polybar](legacy/polybar/)
 - [urxvt](legacy/urxvt/.Xdefaults)

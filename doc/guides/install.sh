@@ -18,7 +18,7 @@ case "$1" in
     curl -fsSL https://raw.githubusercontent.com/ohmybash/oh-my-bash/master/tools/install.sh
     cp .bashrc ~/.bashrc ;;
 -gui)
-   sudo pacman -S --needed sway mako wofi grim slurp pacman-contrib arc-gtk-theme  gsettings-desktop-schemas
+   sudo pacman -S --needed hyprland hyprpaper mako wofi grim slurp pacman-contrib arc-gtk-theme  gsettings-desktop-schemas
    yay -S numix-circle-arc-icons-git;;
 -font) sudo pacman -S --needed ttf-freefont ttf-linux-libertine ttf-hack terminus-font ttf-font-awesome noto-fonts-emoji;;
 -util)
