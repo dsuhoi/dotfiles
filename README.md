@@ -11,6 +11,7 @@
 - [Script](doc/guides/install.sh) for installing basic packages
 - [Hyprland](config/hypr/hyprland.conf)
 - [Waybar](configs/waybar/)
+- [Wofi](configs/wofi/style.css)
 - [Alacritty](configs/alacritty/alacritty.yml)
 - [Bash](configs/bash/.bashrc) (+ [oh-my-bash](https://github.com/ohmybash/oh-my-bash))
 - [Vim](configs/vim/)
