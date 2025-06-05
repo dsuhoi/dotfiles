@@ -9,7 +9,7 @@
 ### Configurations
 - ArchLinux Installation [Guide](doc/guides/arch_install.md)
 - [Script](doc/guides/install.sh) for installing basic packages
-- [Hyprland](config/hypr/hyprland.conf)
+- [Hyprland](configs/hypr/hyprland.conf)
 - [Waybar](configs/waybar/)
 - [Wofi](configs/wofi/style.css)
 - [Alacritty](configs/alacritty/alacritty.yml)
